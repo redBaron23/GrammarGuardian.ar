@@ -2,18 +2,18 @@ import UserIcon from "../atoms/UserIcon";
 
 interface Props {
   text: string;
-  username: string;
-  isSelf?: boolean;
+  from: string;
+  isSelfMessage?: boolean;
   seen?: boolean;
 }
 
-const Message = ({ text, username, seen, isSelf = false }: Props) => {
-  const messageBg = isSelf ? "bg-white" : "bg-indigo-100";
+const Message = ({ text, from, seen, isSelfMessage = false }: Props) => {
+  const messageBg = isSelfMessage ? "bg-white" : "bg-indigo-100";
 
   return (
     <div className="col-start-6 col-end-13 p-3 rounded-lg">
       <div className="flex items-center justify-start flex-row-reverse">
-        <UserIcon initial={username[0]} />
+        <UserIcon initial={from[0]} />
         <div
           className={`relative mr-3 text-sm py-2 px-4 shadow rounded-xl ${messageBg}`}
         >

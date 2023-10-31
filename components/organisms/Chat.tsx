@@ -9,6 +9,13 @@ const Chat = () => {
           <div className="flex flex-col h-full">
             <div className="grid grid-cols-12 gap-y-2">
               <Message text="caca ri23232 23 23 2 2ca" from="Flipe" />
+              <Message text="caca ri23232 23 23 2 2ca" from="Flipe" />
+              <Message text="caca ri23232 23 23 2 2ca" from="Flipe" />
+              <Message text="caca ri23232 23 23 2 2ca" from="Flipe" />
+              <Message text="caca ri23232 23 23 2 2ca" from="Flipe" />
+              <Message text="caca ri23232 23 23 2 2ca" from="Flipe" />
+              <Message text="caca ri23232 23 23 2 2ca" from="Flipe" />
+              <Message text="caca ri23232 23 23 2 2ca" from="Flipe" />
             </div>
           </div>
         </div>

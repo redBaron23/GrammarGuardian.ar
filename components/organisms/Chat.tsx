@@ -14,7 +14,11 @@ const Chat = () => {
               <Message text="caca ri23232 23 23 2 2ca" from="Flipe" />
               <Message text="caca ri23232 23 23 2 2ca" from="Flipe" />
               <Message text="caca ri23232 23 23 2 2ca" from="Flipe" />
-              <Message text="caca ri23232 23 23 2 2ca" from="Flipe" />
+              <Message
+                text="caca ri23232 23 23 2 2ca"
+                from="Flipe"
+                isSelfMessage
+              />
               <Message text="caca ri23232 23 23 2 2ca" from="Flipe" />
             </div>
           </div>

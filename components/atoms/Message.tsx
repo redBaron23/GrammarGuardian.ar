@@ -6,19 +6,23 @@ interface Props {
 }
 
 const Message = ({ text, from, seen, isSelfMessage = false }: Props) => {
-  const containerStyles = isSelfMessage
+  const mainContainerStyles = isSelfMessage
     ? "col-start-6 col-end-13 p-3 rounded-lg"
     : "col-start-1 col-end-8 p-3 rounded-lg";
+  const containerStyles = isSelfMessage
+    ? "flex items-center justify-start flex-row-reverse"
+    : "flex flex-row items-center";
+
   const messageBg = isSelfMessage ? "bg-indigo-100" : "bg-white";
 
   return (
-    <div className={containerStyles}>
-      <div className="flex items-center justify-start flex-row-reverse">
+    <div className={mainContainerStyles}>
+      <div className={containerStyles}>
         <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
           {from[0]}
         </div>
         <div
-          className={`relative mr-3 text-sm py-2 px-4 shadow rounded-xl ${messageBg}`}
+          className={`relative mx-3 text-sm py-2 px-4 shadow rounded-xl ${messageBg}`}
         >
           <div>{text}</div>
           {seen && (

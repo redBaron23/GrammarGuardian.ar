@@ -1,0 +1,15 @@
+-- CreateTable
+CREATE TABLE "Chat" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "userId" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "Message" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "chatId" TEXT NOT NULL,
+    "senderId" TEXT NOT NULL,
+    "text" TEXT NOT NULL
+);

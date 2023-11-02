@@ -1,11 +1,14 @@
+import Image from "next/image";
+
 interface Props {
   text: string;
-  from: string;
-  isSelfMessage?: boolean;
+  senderId: string;
   seen?: boolean;
 }
 
-const Message = ({ text, from, seen, isSelfMessage = false }: Props) => {
+const Message = ({ text, senderId, seen }: Props) => {
+  const isSelfMessage = senderId === "1";
+
   const mainContainerStyles = isSelfMessage
     ? "col-start-6 col-end-13 p-3 rounded-lg"
     : "col-start-1 col-end-8 p-3 rounded-lg";
@@ -15,11 +18,24 @@ const Message = ({ text, from, seen, isSelfMessage = false }: Props) => {
 
   const messageBg = isSelfMessage ? "bg-indigo-100" : "bg-white";
 
+  const image = isSelfMessage ? (
+    "?"
+  ) : (
+    <Image
+      width={50}
+      height={50}
+      alt="Profile picture"
+      referrerPolicy="no-referrer"
+      className="rounded-full"
+      src="/logo.png"
+    />
+  );
+
   return (
     <div className={mainContainerStyles}>
       <div className={containerStyles}>
         <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-          {from[0]}
+          {image}
         </div>
         <div
           className={`relative mx-3 text-sm py-2 px-4 shadow rounded-xl ${messageBg}`}

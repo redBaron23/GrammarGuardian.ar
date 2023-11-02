@@ -1,4 +1,4 @@
-import { MessageType } from "@/libs/validations/MessageValidation";
+import { MessageType } from "@/lib/validations/MessageValidation";
 import Image from "next/image";
 
 type Props = {

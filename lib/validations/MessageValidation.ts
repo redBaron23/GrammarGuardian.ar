@@ -1,10 +1,10 @@
 import { z } from "zod";
 
 export const messageValidator = z.object({
-  id: z.string(),
-  senderId: z.string(),
+  id: z.string().uuid(),
+  senderId: z.string().uuid(),
   text: z.string(),
-  timestamp: z.number(),
+  createdAt: z.number(),
 });
 
 export const messageArrayValidator = z.array(messageValidator);

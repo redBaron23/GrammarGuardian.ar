@@ -5,7 +5,7 @@ import Message from "../atoms/Message";
 import {
   MessageType,
   messageArrayValidator,
-} from "@/libs/validations/MessageValidation";
+} from "@/lib/validations/MessageValidation";
 
 const CHAT_ID = "0";
 

@@ -11,24 +11,28 @@ datasource db {
 }
 
 model User {
-  id String @id @default(uuid())
-  createdAt DateTime @default(now())
-  chats Chat[]
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  isGuardian Boolean  @default(false)
+  chats     Chat[]   // All chats associated with this user/bot
+  messages  Message[] // All messages sent by this user/bot
+  username String
 }
 
 model Chat {
-  id String @id @default(uuid())
-  createdAt DateTime @default(now())
-  user User @relation(fields: [userId], references: [id])
-  userId String
-  messages Message[]
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  user      User      @relation(fields: [userId], references: [id])
+  userId    String
+  messages  Message[]
 }
 
 model Message {
-  id String @id @default(uuid())
+  id        String   @id @default(uuid())
   createdAt DateTime @default(now())
-  chat Chat @relation(fields: [chatId], references: [id])
-  chatId String
-  senderId String
-  text String
+  text      String
+  chat      Chat     @relation(fields: [chatId], references: [id])
+  chatId    String
+  sender    User     @relation(fields: [senderId], references: [id])
+  senderId  String
 }

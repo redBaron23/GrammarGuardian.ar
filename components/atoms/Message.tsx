@@ -1,12 +1,11 @@
+import { MessageType } from "@/libs/validations/MessageValidation";
 import Image from "next/image";
 
-interface Props {
-  text: string;
-  senderId: string;
+type Props = {
   seen?: boolean;
-}
+} & MessageType;
 
-const Message = ({ text, senderId, seen }: Props) => {
+const Message = ({ id, text, senderId, seen }: Props) => {
   const isSelfMessage = senderId === "1";
 
   const mainContainerStyles = isSelfMessage
@@ -31,8 +30,10 @@ const Message = ({ text, senderId, seen }: Props) => {
     />
   );
 
+  console.log(id);
+
   return (
-    <div className={mainContainerStyles}>
+    <div className={mainContainerStyles} key={id}>
       <div className={containerStyles}>
         <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
           {image}

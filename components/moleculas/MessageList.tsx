@@ -2,26 +2,26 @@
 
 import { useEffect, useState } from "react";
 import Message from "../atoms/Message";
-import { MessageType } from "@/lib/validations/MessageValidation";
+import {
+  MessageType,
+  messageArrayValidator,
+} from "@/libs/validations/MessageValidation";
+
+const CHAT_ID = "0";
 
 const MessageList = () => {
   const [messages, setMessages] = useState<MessageType[]>([]);
 
+  const getMessages = async () => {
+    const newMessages = await fetch(`/api/chats/${CHAT_ID}`);
+    const parsedMessages = await newMessages.json();
+
+    const validatedMessages = messageArrayValidator.parse(parsedMessages);
+    setMessages(validatedMessages);
+  };
+
   useEffect(() => {
-    setMessages([
-      {
-        id: "2",
-        senderId: "1",
-        text: "Hola que haces",
-        timestamp: new Date().getDate(),
-      },
-      {
-        id: "2",
-        senderId: "2",
-        text: "Nada",
-        timestamp: new Date().getDate(),
-      },
-    ]);
+    getMessages();
   }, []);
 
   return (

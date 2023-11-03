@@ -7,7 +7,7 @@ interface Props {
 
 const Sidebar = ({ children }: Props) => {
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row overflow-y-hidden">
       <div className="xl:rounded-r transform  xl:translate-x-0  ease-in-out transition duration-500 flex justify-start items-start sm:w-fit bg-gray-900 flex-col">
         <div className="flex justify-start p-6 items-center space-x-3">
           <Image

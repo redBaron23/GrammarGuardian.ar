@@ -30,8 +30,6 @@ const Message = ({ id, text, senderId, seen }: Props) => {
     />
   );
 
-  console.log(id);
-
   return (
     <div className={mainContainerStyles} key={id}>
       <div className={containerStyles}>

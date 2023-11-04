@@ -11,11 +11,9 @@ interface Props {
 }
 
 const Sidebar = ({ isSidebarVisible, onOpen, onClose, children }: Props) => {
-  const contentClassName = isSidebarVisible ? "opacity-0" : "opacity-100";
+  const contentClassName = isSidebarVisible ? "hidden" : "flex-1";
   const sidebarClassName = isSidebarVisible ? "flex w-full" : "w-0 ";
-  const hamburgerButtonClassName = isSidebarVisible
-    ? "opacity-0"
-    : "opacity-100";
+  const hamburgerButtonClassName = isSidebarVisible ? "hidden" : "flex";
 
   return (
     <div className="flex flex-row overflow-y-hidden h-screen w-screen">
@@ -640,7 +638,7 @@ const Sidebar = ({ isSidebarVisible, onOpen, onClose, children }: Props) => {
           </div>
         </div>
       </div>
-      <div className={`${contentClassName} flex-1 relative`}>
+      <div className={`${contentClassName} relative`}>
         <div
           className={`${hamburgerButtonClassName} absolute p-5 right-0 lg:hidden`}
         >

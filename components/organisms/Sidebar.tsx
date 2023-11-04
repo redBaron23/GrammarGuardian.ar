@@ -12,7 +12,9 @@ interface Props {
 
 const Sidebar = ({ isSidebarVisible, onOpen, onClose, children }: Props) => {
   const contentClassName = isSidebarVisible ? "hidden" : "flex-1";
-  const sidebarClassName = isSidebarVisible ? "flex" : "hidden";
+  const sidebarClassName = isSidebarVisible
+    ? "flex transition-all duration-300 ease-in"
+    : "w-0 transition-all duration-300 ease-out";
   const hamburgerButtonClassName = isSidebarVisible
     ? "hidden"
     : "absolute p-5 right-0";
@@ -20,7 +22,7 @@ const Sidebar = ({ isSidebarVisible, onOpen, onClose, children }: Props) => {
   return (
     <div className="flex flex-row overflow-y-hidden h-screen w-screen">
       <div
-        className={` ${sidebarClassName} md:flex  w-full md:w-auto justify-start items-start xl:rounded-r transform  xl:translate-x-0  ease-in-out transition duration-500  bg-gray-900 flex-col`}
+        className={` ${sidebarClassName} lg:flex w-full lg:w-auto justify-start items-start xl:rounded-r  bg-gray-900 flex-col`}
       >
         <div className="flex justify-between w-full p-6">
           <div className="flex justify-start items-center space-x-3">

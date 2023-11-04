@@ -5,7 +5,7 @@ interface Props {
 const HamburgerButton = ({ onClick }: Props) => {
   return (
     <button
-      className="p-2 text-gray-400 bg-white rounded-lg shadow-md sm:hidden hover:text-gray-600 focus:outline-none focus:ring focus:ring-white focus:ring-offset-gray-100 focus:ring-offset-4"
+      className="p-2 text-gray-400 bg-white rounded-lg shadow-md hover:text-gray-600 focus:outline-none focus:ring focus:ring-white focus:ring-offset-gray-100 focus:ring-offset-4"
       onClick={onClick}
     >
       <span className="sr-only">More</span>

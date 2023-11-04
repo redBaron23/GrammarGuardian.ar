@@ -18,7 +18,7 @@ const Sidebar = ({ isSidebarVisible, onOpen, onClose, children }: Props) => {
   return (
     <div className="flex flex-row overflow-y-hidden h-screen w-screen">
       <div
-        className={`${sidebarClassName} flex-col transition-all duration-300 ease-in-out md:flex md:w-auto justify-start items-start xl:rounded-r  bg-gray-900`}
+        className={`${sidebarClassName} flex-col transition-all duration-300 ease-in-out lg:flex lg:w-auto justify-start items-start xl:rounded-r  bg-gray-900`}
       >
         <div className="flex justify-between w-full p-6">
           <div className="flex justify-start items-center space-x-3">

@@ -7,7 +7,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
 
   const handleCloseSidebar = () => setIsSidebarVisible(false);
-
   const handleOpenSidebar = () => setIsSidebarVisible(true);
 
   return (

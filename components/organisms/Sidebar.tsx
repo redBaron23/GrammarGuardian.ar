@@ -2,9 +2,7 @@ import Image from "next/image";
 import { ReactNode } from "react";
 import CloseButton from "../atoms/CloseButton";
 import HamburgerButton from "../atoms/HamburgerButton";
-import UserProfileCard from "../moleculas/UserProfileCard";
-import { useSession } from "next-auth/react";
-import SignIn from "./SignIn";
+import ConditionalUserContent from "./ConditionalUserContent";
 
 interface Props {
   isSidebarVisible: boolean;
@@ -14,21 +12,9 @@ interface Props {
 }
 
 const Sidebar = ({ isSidebarVisible, onOpen, onClose, children }: Props) => {
-  const { data: session } = useSession();
-
-  const name = session?.user?.name as string;
-  const email = session?.user?.email as string;
-  const image = session?.user?.image as string;
-
   const contentClassName = isSidebarVisible ? "hidden" : "flex-1";
   const sidebarClassName = isSidebarVisible ? "flex w-full" : "w-0 ";
   const hamburgerButtonClassName = isSidebarVisible ? "hidden" : "flex";
-
-  const renderedUserContent = session?.user ? (
-    <UserProfileCard name={name} email={email} image={image} />
-  ) : (
-    <SignIn />
-  );
 
   return (
     <div className="flex flex-row overflow-y-hidden h-screen w-screen">
@@ -164,7 +150,7 @@ const Sidebar = ({ isSidebarVisible, onOpen, onClose, children }: Props) => {
           </div>
         </div>
         <div className="flex flex-col justify-end items-center h-full pb-6 px-6  w-full  space-y-32 ">
-          {renderedUserContent}
+          <ConditionalUserContent />
         </div>
       </div>
       <div className={`${contentClassName} relative`}>

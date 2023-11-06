@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Dropdown from "../atoms/Dropdown";
 
 interface Props {
   name: string;
@@ -25,6 +26,8 @@ const UserProfileCard = ({ name, email, image }: Props) => {
           </p>
         </div>
       </div>
+      <Dropdown />
+
       <svg
         className="cursor-pointer"
         width="24"

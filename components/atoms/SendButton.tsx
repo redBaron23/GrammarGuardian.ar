@@ -1,8 +1,18 @@
-const SendButton = () => {
+interface Props {
+  onClick: () => void;
+  disabled: boolean;
+}
+
+const SendButton = ({ onClick, disabled }: Props) => {
+  const disabledClassName = disabled
+    ? "bg-indigo-200"
+    : "bg-indigo-500 hover:bg-indigo-600";
+
   return (
     <button
-      type="submit"
-      className="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0"
+      onClick={onClick}
+      disabled={disabled}
+      className={`${disabledClassName} flex items-center justify-center rounded-xl text-white px-4 py-1 flex-shrink-0`}
     >
       <span>Send</span>
       <span className="ml-2">

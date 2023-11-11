@@ -1,3 +1,4 @@
-const USER_ID = "97cf94d9-bf8d-4c85-99a7-019de54b0304";
+const USER_ID = "cloue3fy80002jycwh3o6g47c";
+const CHAT_ID = "cloumogov0000jynuxit11y2x";
 
-export { USER_ID };
+export { USER_ID, CHAT_ID };

@@ -1,6 +1,5 @@
 import ChatInput from "../moleculas/ChatInput";
 import MessageList from "../moleculas/MessageList";
-import SignIn from "../atoms/SignInButton";
 
 const Chat = () => {
   return (

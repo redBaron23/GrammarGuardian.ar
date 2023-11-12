@@ -11,12 +11,11 @@ import { useState, useEffect } from "react";
 
 const Chat = () => {
   const [messages, setMessages] = useState<MessageType[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const getMessages = async () => {
     const newMessages = await fetch(`/api/chats/${CHAT_ID}/messages`);
     const parsedMessages = await newMessages.json();
-
-    console.log(parsedMessages);
 
     const validatedMessages = messageArrayValidator.parse(parsedMessages);
     setMessages(validatedMessages);
@@ -27,21 +26,22 @@ const Chat = () => {
   }, []);
 
   const handleSubmit = async (text: string) => {
-    const newMessages = await fetch(`/api/chats/${CHAT_ID}/messages`, {
+    setIsLoading(true);
+    const newMessage = await fetch(`/api/chats/${CHAT_ID}/messages`, {
       method: "POST",
       body: JSON.stringify({ text }),
     });
-    const parsedMessages = await newMessages.json();
-    console.log({ parsedMessages });
+    const parsedMessage = await newMessage.json();
 
-    setMessages(parsedMessages);
+    setMessages((prevMessages) => [...prevMessages, parsedMessage]);
+    setIsLoading(false);
   };
 
   return (
     <div className="flex flex-col flex-auto h-full">
       <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4">
         <MessageList messages={messages} />
-        <ChatInput onSubmit={handleSubmit} />
+        <ChatInput onSubmit={handleSubmit} isLoading={isLoading} />
       </div>
     </div>
   );

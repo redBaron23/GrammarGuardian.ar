@@ -6,14 +6,20 @@ import SendButton from "../atoms/SendButton";
 
 interface Props {
   onSubmit: (message: string) => void;
+  isLoading: boolean;
 }
 
-const ChatInput = ({ onSubmit }: Props) => {
+const ChatInput = ({ onSubmit, isLoading }: Props) => {
   const [message, setMessage] = useState("");
 
-  const handleSubmit = () => onSubmit(message);
+  const handleSubmit = () => {
+    if (!message.length) {
+      return;
+    }
 
-  const isSendButtonDisabled = message.length === 0;
+    onSubmit(message);
+    setMessage("");
+  };
 
   return (
     <div className="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4">
@@ -31,7 +37,7 @@ const ChatInput = ({ onSubmit }: Props) => {
         </div>
       </div>
       <div className="ml-4">
-        <SendButton onClick={handleSubmit} disabled={isSendButtonDisabled} />
+        <SendButton onClick={handleSubmit} isLoading={isLoading} />
       </div>
     </div>
   );

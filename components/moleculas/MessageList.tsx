@@ -1,3 +1,7 @@
+"use client";
+
+import { useSession } from "next-auth/react";
+import { BulletList } from "react-content-loader";
 import Message from "../atoms/Message";
 import { MessageType } from "@/lib/validations/MessageValidation";
 
@@ -6,10 +10,20 @@ interface Props {
 }
 
 const MessageList = ({ messages }: Props) => {
+  const { status } = useSession();
+
+  const isLoading = status === "loading";
+
   return (
     <div className="flex flex-col h-full overflow-x-auto mb-4">
       <div className="flex flex-col h-full">
-        <div className="grid grid-cols-12 gap-y-2">{messages.map(Message)}</div>
+        {isLoading && <BulletList backgroundColor="rgb(229 231 235)" />}
+        <div className="grid grid-cols-12 gap-y-2">
+          {!isLoading &&
+            messages.map((message) => (
+              <Message {...message} key={message.id} />
+            ))}
+        </div>
       </div>
     </div>
   );

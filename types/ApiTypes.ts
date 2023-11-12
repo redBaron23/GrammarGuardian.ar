@@ -3,3 +3,7 @@ export type ApiParams = {
     [key: string]: string;
   };
 };
+
+export enum STATUS_CODE {
+  UNAUTHORIZED = 401,
+}

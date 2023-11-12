@@ -18,6 +18,7 @@ const authOptions: AuthOptions = {
       return session;
     },
   },
+  secret: Environment.SECRET,
 };
 
 const handler = NextAuth(authOptions);

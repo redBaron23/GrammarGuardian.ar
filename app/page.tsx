@@ -9,6 +9,8 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="flex flex-col h-full h-screen antialiased text-gray-800"></main>
+    <main className="flex flex-col h-full h-screen antialiased text-gray-800">
+      <Chat />
+    </main>
   );
 }

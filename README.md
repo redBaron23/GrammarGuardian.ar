@@ -39,6 +39,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ```
 DATABASE_URL="file:./dev.db"
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
+AUTH_GOOGLE_ID=
+AUTH_GOOGLE_SECRET=
 ```

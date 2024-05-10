@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import CloseButton from "../atoms/CloseButton";
 import HamburgerButton from "../atoms/HamburgerButton";
 import ConditionalUserContent from "./ConditionalUserContent";
+import { useSession } from "next-auth/react";
 
 interface Props {
   isSidebarVisible: boolean;
@@ -12,9 +13,15 @@ interface Props {
 }
 
 const Sidebar = ({ isSidebarVisible, onOpen, onClose, children }: Props) => {
+  const { status } = useSession();
+
   const contentClassName = isSidebarVisible ? "hidden" : "flex-1";
   const sidebarClassName = isSidebarVisible ? "flex w-full" : "w-0 ";
   const hamburgerButtonClassName = isSidebarVisible ? "hidden" : "flex";
+
+  if (status !== "authenticated") {
+    return children;
+  }
 
   return (
     <div className="flex flex-row overflow-y-hidden h-screen w-screen">

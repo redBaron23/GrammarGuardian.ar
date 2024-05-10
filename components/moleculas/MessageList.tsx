@@ -20,8 +20,8 @@ const MessageList = ({ messages }: Props) => {
         {isLoading && <BulletList backgroundColor="rgb(229 231 235)" />}
         <div className="grid grid-cols-12 gap-y-2">
           {!isLoading &&
-            messages.map((message) => (
-              <Message {...message} key={message.id} />
+            messages.map((message, index) => (
+              <Message {...message} key={`${message.id}/index`} />
             ))}
         </div>
       </div>

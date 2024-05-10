@@ -21,15 +21,15 @@ export async function POST(
   { params: { chatId } }: ApiParams
 ) {
   const { text }: MessageCreateInput = await req.json();
-  const { user } = await getServerSideSession();
+  // const { user } = await getServerSideSession();
 
-  const createdMessage = await prisma.message.create({
-    data: {
-      text,
-      chatId,
-      senderId: user.id,
-    },
-  });
+  // const createdMessage = await prisma.message.create({
+  //   data: {
+  //     text,
+  //     chatId,
+  //     senderId: user.id,
+  //   },
+  // });
 
-  return NextResponse.json(createdMessage);
+  // return NextResponse.json(createdMessage);
 }

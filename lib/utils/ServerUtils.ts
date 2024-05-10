@@ -1,15 +1,13 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { STATUS_CODE } from "@/types/ApiTypes";
-import { getServerSession } from "next-auth";
+import { auth } from "@/auth";
 
 const getServerSideSession = async () => {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
 
-  if (!session) {
+  if (!session?.user) {
     throw new Error("You need to be logged in");
   }
 
-  return session;
+  return session.user;
 };
 
 export { getServerSideSession };

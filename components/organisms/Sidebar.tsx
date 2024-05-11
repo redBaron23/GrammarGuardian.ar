@@ -1,11 +1,12 @@
-"use client";
-
 import Image from "next/image";
 import { ReactNode } from "react";
 import CloseButton from "../atoms/CloseButton";
 import HamburgerButton from "../atoms/HamburgerButton";
 import ConditionalUserContent from "./ConditionalUserContent";
-import { useSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/authOptions";
+import { GetServerSidePropsContext } from "next";
+import { cookies } from "next/headers";
 
 interface Props {
   isSidebarVisible: boolean;
@@ -15,15 +16,16 @@ interface Props {
 }
 
 const Sidebar = ({ isSidebarVisible, onOpen, onClose, children }: Props) => {
-  const { status } = useSession();
-
   const contentClassName = isSidebarVisible ? "hidden" : "flex-1";
   const sidebarClassName = isSidebarVisible ? "flex w-full" : "w-0 ";
   const hamburgerButtonClassName = isSidebarVisible ? "hidden" : "flex";
 
-  if (status !== "authenticated") {
-    return children;
-  }
+  console.log("__________CACA_________");
+  console.log(cookies);
+
+  // if (status !== "authenticated") {
+  //   return children;
+  // }
 
   return (
     <div className="flex flex-row overflow-y-hidden h-screen w-screen">
@@ -176,3 +178,11 @@ const Sidebar = ({ isSidebarVisible, onOpen, onClose, children }: Props) => {
 };
 
 export default Sidebar;
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  return {
+    props: {
+      session: await getServerSession(context.req, context.res, authOptions),
+    },
+  };
+}

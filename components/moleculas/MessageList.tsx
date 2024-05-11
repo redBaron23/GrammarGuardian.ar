@@ -21,7 +21,7 @@ const MessageList = ({ messages }: Props) => {
         <div className="grid grid-cols-12 gap-y-2">
           {!isLoading &&
             messages.map((message, index) => (
-              <Message {...message} key={`${message.id}/index`} />
+              <Message {...message} key={`${message.id}/${index}`} />
             ))}
         </div>
       </div>

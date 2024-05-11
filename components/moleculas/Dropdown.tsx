@@ -1,9 +1,10 @@
+"use client";
+
 import { signOut } from "next-auth/react";
 import React, { useState } from "react";
 import signOutIcon from "@/public/assets/sign-out-icon.svg";
 import settingsIcon from "@/public/assets/settings-icon.svg";
 import accountIcon from "@/public/assets/account-icon.svg";
-
 import DropdownOption from "../atoms/DropdownOption";
 
 const Dropdown = () => {

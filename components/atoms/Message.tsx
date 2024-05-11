@@ -30,6 +30,7 @@ const Message = ({ text, senderId, seen }: Props) => {
       alt="Profile picture"
       referrerPolicy="no-referrer"
       className="rounded-full"
+      priority
       src="/logo.png"
     />
   );

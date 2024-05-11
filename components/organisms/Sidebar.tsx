@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { ReactNode } from "react";
 import CloseButton from "../atoms/CloseButton";
@@ -37,6 +39,7 @@ const Sidebar = ({ isSidebarVisible, onOpen, onClose, children }: Props) => {
               referrerPolicy="no-referrer"
               className="rounded-full"
               src="/logo.png"
+              priority
             />
             <p className="text-2xl leading-6 text-white">GrammarGuardian.ar</p>
           </div>

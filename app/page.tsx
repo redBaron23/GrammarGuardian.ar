@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 const currentYear = new Date().getFullYear();
 
-export default function Home() {
+export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 flex items-center justify-center">
       <Head>
@@ -26,6 +26,7 @@ export default function Home() {
           alt="Profile picture"
           referrerPolicy="no-referrer"
           className="rounded-full mx-auto mb-8 w-48 transition ease-in"
+          priority
           src="/logo.png"
         />
         <h1 className="text-5xl font-extrabold text-white mb-8 transition ease-in animation-delay-500">

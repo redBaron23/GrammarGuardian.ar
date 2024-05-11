@@ -1,21 +1,20 @@
 "use client";
 
 import UserProfileCard from "../moleculas/UserProfileCard";
-import Spinner from "../atoms/Spinner";
 import { signIn, useSession } from "next-auth/react";
 
 function ConditionalUserContent() {
   const { data: session, status } = useSession();
 
-  const name = session?.user?.name as string;
-  const email = session?.user?.email as string;
-  const image = session?.user?.image as string;
+  const name = session?.user?.name;
+  const email = session?.user?.email;
+  const image = session?.user?.image;
 
   if (status === "loading") {
     return "<Spinner />";
   }
 
-  if (session?.user) {
+  if (status === "authenticated" && name && email && image) {
     return <UserProfileCard name={name} email={email} image={image} />;
   }
 

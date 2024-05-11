@@ -1,31 +1,30 @@
+"use client";
+
 import Image from "next/image";
-import { ReactNode } from "react";
 import CloseButton from "../atoms/CloseButton";
 import HamburgerButton from "../atoms/HamburgerButton";
-import ConditionalUserContent from "./ConditionalUserContent";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/authOptions";
-import { GetServerSidePropsContext } from "next";
-import { cookies } from "next/headers";
+import { useSession } from "next-auth/react";
+import UserProfileCard from "../moleculas/UserProfileCard";
+import { useState } from "react";
 
 interface Props {
-  isSidebarVisible: boolean;
-  onOpen: () => void;
-  onClose: () => void;
-  children?: ReactNode;
+  children?: any;
 }
 
-const Sidebar = ({ isSidebarVisible, onOpen, onClose, children }: Props) => {
+const Sidebar = ({ children }: Props) => {
+  const { data, status } = useSession();
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+
+  const handleCloseSidebar = () => setIsSidebarVisible(false);
+  const handleOpenSidebar = () => setIsSidebarVisible(true);
+
   const contentClassName = isSidebarVisible ? "hidden" : "flex-1";
   const sidebarClassName = isSidebarVisible ? "flex w-full" : "w-0 ";
   const hamburgerButtonClassName = isSidebarVisible ? "hidden" : "flex";
 
-  console.log("__________CACA_________");
-  console.log(cookies);
-
-  // if (status !== "authenticated") {
-  //   return children;
-  // }
+  if (status === "unauthenticated") {
+    return children;
+  }
 
   return (
     <div className="flex flex-row overflow-y-hidden h-screen w-screen">
@@ -45,7 +44,7 @@ const Sidebar = ({ isSidebarVisible, onOpen, onClose, children }: Props) => {
             />
             <p className="text-2xl leading-6 text-white">GrammarGuardian.ar</p>
           </div>
-          <CloseButton className="lg:hidden" onClick={onClose} />
+          <CloseButton className="lg:hidden" onClick={handleCloseSidebar} />
         </div>
         <div className="mt-6 flex flex-col justify-start items-center  pl-4 w-full border-gray-600 border-b space-y-3 pb-5 ">
           <button className="flex jusitfy-start items-center space-x-6 w-full  focus:outline-none  focus:text-indigo-400  text-white rounded ">
@@ -162,14 +161,14 @@ const Sidebar = ({ isSidebarVisible, onOpen, onClose, children }: Props) => {
           </div>
         </div>
         <div className="flex flex-col justify-end items-center h-full pb-6 px-6  w-full  space-y-32 ">
-          <ConditionalUserContent />
+          <UserProfileCard user={data?.user} />
         </div>
       </div>
       <div className={`${contentClassName} relative`}>
         <div
           className={`${hamburgerButtonClassName} absolute p-5 right-0 lg:hidden`}
         >
-          <HamburgerButton onClick={onOpen} />
+          <HamburgerButton onClick={handleOpenSidebar} />
         </div>
         {children}
       </div>
@@ -178,11 +177,3 @@ const Sidebar = ({ isSidebarVisible, onOpen, onClose, children }: Props) => {
 };
 
 export default Sidebar;
-
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  return {
-    props: {
-      session: await getServerSession(context.req, context.res, authOptions),
-    },
-  };
-}

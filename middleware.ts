@@ -24,10 +24,6 @@ const middleware: NextMiddlewareWithAuth = async (req) => {
 
   // Handle protected route access for authenticated users
   if (token && UNPROTECTED_ROUTES.includes(currentRoute)) {
-    // Redirect authenticated users away from unprotected routes (optional behavior)
-    console.warn(
-      `Authenticated user attempting to access unprotected route: ${currentRoute}`
-    );
     return NextResponse.redirect(new URL("/chat", req.url));
   }
 
@@ -44,5 +40,5 @@ const middleware: NextMiddlewareWithAuth = async (req) => {
 export default middleware;
 
 export const config = {
-  matcher: [...PROTECTED_ROUTES, ...UNPROTECTED_ROUTES],
+  matcher: ["/", "/chat"],
 };

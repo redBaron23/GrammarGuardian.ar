@@ -38,7 +38,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## Env Vars
 
 ```
-DATABASE_URL="file:./dev.db"
+POSTGRES_URL="postgresql://user:pass@localhost:5432/db-name"
 AUTH_GOOGLE_ID=
 AUTH_GOOGLE_SECRET=
+NEXTAUTH_SECRET="XyhsC7Ngv3tJtklaXfNsiVzoJ0UvLZMCh98ytrTit5w="
+NEXTAUTH_URL="localhost:3000/api/auth"
 ```

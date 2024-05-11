@@ -7,10 +7,16 @@ export const metadata: Metadata = {
     "Discover the power of AI in enhancing your English. GrammarGuardian.ar provides instant feedback, refining your sentences and helping you communicate with clarity and confidence.",
 };
 
-export default function ChatPage() {
+interface Props {
+  params: {
+    chatId: string;
+  };
+}
+
+export default function ChatPage({ params: { chatId } }: Props) {
   return (
     <main className="flex flex-col h-full h-screen antialiased text-gray-800">
-      <Chat />
+      <Chat chatId={chatId} />
     </main>
   );
 }

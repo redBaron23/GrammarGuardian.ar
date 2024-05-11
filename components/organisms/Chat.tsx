@@ -9,7 +9,12 @@ import {
 } from "@/lib/validations/MessageValidation";
 import { useState, useEffect } from "react";
 
-const Chat = () => {
+interface Props {
+  chatId?: string;
+}
+
+const Chat = ({ chatId }: Props) => {
+  const [currentChatId, setCurrentChatId] = useState(chatId);
   const [messages, setMessages] = useState<MessageType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -21,12 +26,32 @@ const Chat = () => {
     setMessages(validatedMessages);
   };
 
+  const createChat = async (text: string) => {
+    const res = await fetch(`/api/chats`, {
+      method: "POST",
+      body: JSON.stringify({}),
+    });
+
+    console.log(res);
+  };
+
   useEffect(() => {
-    getMessages();
-  }, []);
+    console.log(chatId);
+    if (chatId) {
+      getMessages();
+      return;
+    }
+  }, [chatId]);
 
   const handleSubmit = async (text: string) => {
-    setIsLoading(true);
+    // setIsLoading(true);
+
+    if (!chatId) {
+      const newChat = await createChat(text);
+
+      console.log({ newChat });
+    }
+
     const newMessage = await fetch(`/api/chats/${CHAT_ID}/messages`, {
       method: "POST",
       body: JSON.stringify({ text }),

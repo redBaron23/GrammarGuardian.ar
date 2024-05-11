@@ -1,7 +1,7 @@
 "use client";
 
 import { signOut } from "next-auth/react";
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import signOutIcon from "@/public/assets/sign-out-icon.svg";
 import settingsIcon from "@/public/assets/settings-icon.svg";
 import accountIcon from "@/public/assets/account-icon.svg";
@@ -11,6 +11,17 @@ import Image from "next/image";
 
 const Dropdown = () => {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (open && !event.target.closest(".dropdown")) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, [open]);
 
   return (
     <div className="flex justify-end items-center relative">

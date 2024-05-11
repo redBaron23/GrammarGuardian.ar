@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { ApiParams } from "@/types/ApiTypes";
 
-type MessageCreateInput = {
+export type MessageCreateInput = {
   text: string;
   senderId: string;
 };

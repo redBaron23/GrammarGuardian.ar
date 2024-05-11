@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { ApiParams } from "@/types/ApiTypes";
-import { getServerSideSession } from "@/lib/utils/ServerUtils";
 
 type MessageCreateInput = {
   text: string;

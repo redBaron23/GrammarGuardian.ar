@@ -18,28 +18,29 @@ export default function HomePage() {
         <title>Grammar Guardian.ar</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <main className="flex flex-col items-center text-center">
-        <Image
-          width={150}
-          height={150}
-          alt="Profile picture"
-          referrerPolicy="no-referrer"
-          className="rounded-full mx-auto mb-8 w-48 transition ease-in"
-          priority
-          src="/logo.png"
-        />
-        <h1 className="text-5xl font-extrabold text-white mb-8 transition ease-in animation-delay-500">
+        <div className="relative mb-8">
+          <Image
+            width={150}
+            height={150}
+            alt="Profile picture"
+            referrerPolicy="no-referrer"
+            className="rounded-full mx-auto w-48 transition-all duration-500 ease-in-out transform hover:scale-110 border-4 border-yellow-400 animate-logo-pulse"
+            priority
+            src="/logo.png"
+          />
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400 to-yellow-600 opacity-0 transition-opacity duration-500 ease-in-out hover:opacity-100"></div>
+        </div>
+        <h1 className="text-5xl font-extrabold text-white mb-8 opacity-0 animate-fade-in-slower animation-delay-500">
           Grammar Guardian.ar
         </h1>
-        <p className="text-2xl text-blue-100 mb-12 transition ease-in animation-delay-1000">
+        <p className="text-2xl text-blue-100 mb-12 opacity-0 animate-fade-in-slower animation-delay-1000">
           Learn Grammar with AI
         </p>
-        <div className="transition ease-in animation-delay-1500">
+        <div className="opacity-0 animate-fade-in-slower animation-delay-1500">
           <GetStarted />
         </div>
       </main>
-
       <footer className="absolute bottom-0 left-0 right-0 p-4">
         <p className="text-center text-blue-100 text-sm">
           &copy; {currentYear} Grammar Guardian.ar. All rights reserved.

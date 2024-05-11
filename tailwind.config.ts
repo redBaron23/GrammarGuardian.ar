@@ -9,12 +9,17 @@ const config: Config = {
   theme: {
     extend: {
       animation: {
-        "fade-in-slow": "fadeIn 1.5s ease-in-out",
+        "fade-in-slower": "fadeIn 2s ease-in-out forwards",
+        "logo-pulse": "logoPulse 3s ease-in-out infinite",
       },
       keyframes: {
         fadeIn: {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
+        },
+        logoPulse: {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.1)" },
         },
       },
       backgroundImage: {
@@ -26,4 +31,5 @@ const config: Config = {
   },
   plugins: [],
 };
+
 export default config;

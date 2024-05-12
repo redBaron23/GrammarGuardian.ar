@@ -1,16 +1,19 @@
 "use server";
 
+import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
 interface MessagesInput {
-  userId?: string;
   chatId?: string;
 }
 
 export const addMessage = async (
-  { userId, chatId }: MessagesInput,
+  { chatId }: MessagesInput,
   formData: FormData
 ) => {
+  const session = await auth();
+  const userId = session?.user.id;
+
   const text = formData.get("text") as string;
 
   if (!text || !userId) {
@@ -33,8 +36,11 @@ export const addMessage = async (
   return chat;
 };
 
-export const getMessages = async ({ userId, chatId }: MessagesInput) => {
-  if (!chatId) {
+export const getMessages = async ({ chatId }: MessagesInput) => {
+  const session = await auth();
+  const userId = session?.user.id;
+
+  if (!chatId || !userId) {
     return [];
   }
 

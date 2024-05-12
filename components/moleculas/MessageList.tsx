@@ -1,6 +1,6 @@
-"use client";
+// "use client";
 
-import { useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 import { BulletList } from "react-content-loader";
 import Message from "../atoms/Message";
 import { MessageType } from "@/lib/validations/MessageValidation";
@@ -10,9 +10,10 @@ interface Props {
 }
 
 const MessageList = ({ messages }: Props) => {
-  const { status } = useSession();
+  // const { status } = useSession();
 
-  const isLoading = status === "loading";
+  // const isLoading = status === "loading";
+  const isLoading = false;
 
   return (
     <div className="flex flex-col h-full overflow-x-auto mb-4">

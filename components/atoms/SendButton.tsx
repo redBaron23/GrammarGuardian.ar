@@ -1,16 +1,16 @@
 import { ButtonHTMLAttributes } from "react";
 import Spinner from "./Spinner";
+import { useFormStatus } from "react-dom";
 
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-  isLoading: boolean;
-}
+const SendButton = ({
+  disabled,
+  ...otherProps
+}: ButtonHTMLAttributes<HTMLButtonElement>) => {
+  const { pending } = useFormStatus();
 
-const SendButton = ({ onClick, disabled, isLoading, ...otherProps }: Props) => {
   const disabledClassName =
-    disabled || isLoading
-      ? "bg-indigo-200"
-      : "bg-indigo-500 hover:bg-indigo-600";
-  const currentIcon = isLoading ? (
+    disabled || pending ? "bg-indigo-200" : "bg-indigo-500 hover:bg-indigo-600";
+  const currentIcon = pending ? (
     <Spinner />
   ) : (
     <svg
@@ -32,7 +32,7 @@ const SendButton = ({ onClick, disabled, isLoading, ...otherProps }: Props) => {
   return (
     <button
       {...otherProps}
-      onClick={onClick}
+      type="submit"
       disabled={disabled}
       className={`${disabledClassName} flex items-center justify-center rounded-xl text-white px-4 py-1 flex-shrink-0`}
     >

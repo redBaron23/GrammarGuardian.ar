@@ -15,7 +15,7 @@ export const addMessage = async (
   formData: FormData
 ) => {
   const session = await auth();
-  const userId = session?.user.id;
+  const userId = session?.user?.id;
 
   const text = formData.get("text") as string;
 

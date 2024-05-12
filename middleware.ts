@@ -5,7 +5,7 @@ import {
 import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 
-const PROTECTED_ROUTES = ["/chat"];
+const PROTECTED_ROUTES = ["/chat", "/profile", "/settings"];
 const UNPROTECTED_ROUTES = ["/"];
 
 const withAuthRedirect = async (req: NextRequestWithAuth) => {
@@ -16,7 +16,7 @@ const withAuthRedirect = async (req: NextRequestWithAuth) => {
 
   const currentRoute = req.nextUrl.pathname;
 
-  if (!token && currentRoute.startsWith("/api/chats")) {
+  if (!token && currentRoute.startsWith("/api/chat")) {
     return NextResponse.redirect(new URL("/", req.url));
   }
 
@@ -24,7 +24,10 @@ const withAuthRedirect = async (req: NextRequestWithAuth) => {
     return NextResponse.redirect(new URL("/chat", req.url));
   }
 
-  if (!token && PROTECTED_ROUTES.includes(currentRoute)) {
+  if (
+    !token &&
+    PROTECTED_ROUTES.find((route) => currentRoute.startsWith(route))
+  ) {
     return NextResponse.redirect(new URL("/", req.url));
   }
 
@@ -34,7 +37,3 @@ const withAuthRedirect = async (req: NextRequestWithAuth) => {
 const middleware: NextMiddlewareWithAuth = withAuthRedirect;
 
 export default middleware;
-
-export const config = {
-  matcher: ["/", "/chat", "/api/chats/:path*"],
-};

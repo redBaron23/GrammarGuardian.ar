@@ -21,8 +21,18 @@ const Message = ({ text, senderId, seen }: Props) => {
 
   const messageBg = isSelfMessage ? "bg-indigo-100" : "bg-white";
 
+  const userImage = data?.user.image && (
+    <Image
+      className="rounded-full"
+      src={data?.user?.image}
+      alt="avatar"
+      width={34}
+      height={34}
+    />
+  );
+
   const image = isSelfMessage ? (
-    "?"
+    userImage
   ) : (
     <Image
       width={50}

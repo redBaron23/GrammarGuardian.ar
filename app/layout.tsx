@@ -19,7 +19,10 @@ export default async function RootLayout({
   const session = await auth();
 
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className="scrollbar-thumb-indigo-400 scrollbar-track-indigo-50"
+    >
       <body className={inter.className}>
         <Providers session={session}>{children}</Providers>
       </body>

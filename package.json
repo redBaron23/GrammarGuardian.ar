@@ -17,11 +17,12 @@
     "@prisma/client": "^5.13.0",
     "@types/react": "18.3.2",
     "@types/react-dom": "npm:types-react-dom@beta",
-    "next": "^14.2.3",
+    "next": "^next@14.3.0-canary.45",
     "next-auth": "^4.24.7",
     "react": "^19.0.0-beta-04b058868c-20240508",
     "react-content-loader": "^7.0.0",
     "react-dom": "^19.0.0-beta-04b058868c-20240508",
+    "react-toastify": "^10.0.5",
     "zod": "^3.23.8"
   },
   "overrides": {
@@ -35,6 +36,7 @@
     "eslint-config-next": "^14.0.1",
     "postcss": "^8",
     "prisma": "^5.13.0",
+    "tailwind-scrollbar": "^3.1.0",
     "tailwindcss": "^3",
     "typescript": "^5"
   }

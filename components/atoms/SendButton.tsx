@@ -6,10 +6,13 @@ const SendButton = ({
   disabled,
   ...otherProps
 }: ButtonHTMLAttributes<HTMLButtonElement>) => {
-  const { pending } = useFormStatus();
+  const { pending, data } = useFormStatus();
 
-  const disabledClassName =
-    disabled || pending ? "bg-indigo-200" : "bg-indigo-500 hover:bg-indigo-600";
+  const isDisabled = disabled || pending || !data;
+
+  const disabledClassName = isDisabled
+    ? "bg-indigo-200"
+    : "bg-indigo-500 hover:bg-indigo-600";
   const currentIcon = pending ? (
     <Spinner />
   ) : (
@@ -33,7 +36,7 @@ const SendButton = ({
     <button
       {...otherProps}
       type="submit"
-      disabled={disabled}
+      disabled={isDisabled}
       className={`${disabledClassName} flex items-center justify-center rounded-xl text-white px-4 py-1 flex-shrink-0`}
     >
       {currentIcon}

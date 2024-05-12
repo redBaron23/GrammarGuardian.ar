@@ -1,5 +1,4 @@
 import Chat from "@/components/organisms/Chat";
-import { auth } from "@/lib/auth";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,16 +9,16 @@ export const metadata: Metadata = {
 
 interface Props {
   params: {
-    chatId: string;
+    chatIdArray: string[];
   };
 }
 
-export default async function ChatPage({ params: { chatId } }: Props) {
-  const session = await auth();
+export default function ChatPage({ params: { chatIdArray = [] } }: Props) {
+  const chatId = chatIdArray[0];
 
   return (
     <main className="flex flex-col h-full h-screen antialiased text-gray-800">
-      <Chat chatId={chatId} userId={session?.user.id} />
+      <Chat chatId={chatId} />
     </main>
   );
 }

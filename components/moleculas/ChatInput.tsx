@@ -1,28 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, FormHTMLAttributes, useState } from "react";
 import AttachmentInput from "../atoms/AttachmentInput";
 import SendButton from "../atoms/SendButton";
 
 interface Props {
-  onSubmit: (message: string) => void;
+  action: any;
   isLoading: boolean;
 }
 
-const ChatInput = ({ onSubmit, isLoading }: Props) => {
+const ChatInput = ({ action, isLoading }: Props) => {
   const [message, setMessage] = useState("");
 
-  const handleSubmit = () => {
-    if (!message.length) {
-      return;
-    }
-
-    onSubmit(message);
-    setMessage("");
-  };
-
   return (
-    <div className="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4">
+    <form
+      className="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4"
+      action={action}
+    >
       <AttachmentInput />
       <div className="flex-grow ml-4">
         <div className="relative w-full">
@@ -31,15 +25,15 @@ const ChatInput = ({ onSubmit, isLoading }: Props) => {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             type="text"
-            name="message"
+            name="text"
             className="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
           />
         </div>
       </div>
       <div className="ml-4">
-        <SendButton onClick={handleSubmit} isLoading={isLoading} />
+        <SendButton type="submit" isLoading={isLoading} />
       </div>
-    </div>
+    </form>
   );
 };
 

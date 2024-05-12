@@ -1,12 +1,11 @@
+import { ButtonHTMLAttributes } from "react";
 import Spinner from "./Spinner";
 
-interface Props {
-  onClick: () => void;
-  disabled?: boolean;
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading: boolean;
 }
 
-const SendButton = ({ onClick, disabled, isLoading }: Props) => {
+const SendButton = ({ onClick, disabled, isLoading, ...otherProps }: Props) => {
   const disabledClassName =
     disabled || isLoading
       ? "bg-indigo-200"
@@ -32,6 +31,7 @@ const SendButton = ({ onClick, disabled, isLoading }: Props) => {
 
   return (
     <button
+      {...otherProps}
       onClick={onClick}
       disabled={disabled}
       className={`${disabledClassName} flex items-center justify-center rounded-xl text-white px-4 py-1 flex-shrink-0`}

@@ -2,7 +2,7 @@ import {
   NextMiddlewareWithAuth,
   NextRequestWithAuth,
 } from "next-auth/middleware";
-import { NextFetchEvent, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 
 const PROTECTED_ROUTES = ["/chat"];
@@ -31,20 +31,7 @@ const withAuthRedirect = async (req: NextRequestWithAuth) => {
   return NextResponse.next();
 };
 
-const withErrorHandling = (middleware: NextMiddlewareWithAuth) => {
-  return async (req: NextRequestWithAuth, event: NextFetchEvent) => {
-    try {
-      return await middleware(req, event);
-    } catch (error) {
-      console.error("Error in middleware or route handler:", error);
-      return NextResponse.json("Internal Server Error", { status: 500 });
-    }
-  };
-};
-
-const middleware: NextMiddlewareWithAuth = async (req, event) => {
-  return withErrorHandling(withAuthRedirect)(req, event);
-};
+const middleware: NextMiddlewareWithAuth = withAuthRedirect;
 
 export default middleware;
 

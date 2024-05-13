@@ -17,6 +17,8 @@ const MessageList = ({ messages }: Props) => {
     }
   }, [messages]);
 
+  console.log(messages);
+
   return (
     <div
       ref={messageListRef}

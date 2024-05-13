@@ -10,6 +10,27 @@ interface MessagesInput {
   chatId?: string;
 }
 
+const addGuardianMessage = async (chatId: string) => {
+  try {
+    const guardianMessage = "Hey, idk";
+    const chat = await prisma.chat.update({
+      where: { id: chatId },
+      data: {
+        messages: {
+          create: {
+            text: guardianMessage,
+            senderId: "0",
+          },
+        },
+      },
+    });
+
+    revalidateTag("/messages");
+  } catch (e) {
+    console.log("se rompio");
+  }
+};
+
 export const addMessage = async (
   { chatId }: MessagesInput,
   formData: FormData
@@ -56,6 +77,8 @@ export const addMessage = async (
     });
 
     revalidateTag("/messages");
+
+    await addGuardianMessage(chatId);
 
     return { error: null, chat };
   } catch (e) {

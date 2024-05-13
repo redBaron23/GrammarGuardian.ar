@@ -8,7 +8,7 @@
     "postinstall": "prisma generate",
     "start": "next start",
     "lint": "next lint",
-    "vercel-build": "prisma generate && prisma migrate deploy && next build",
+    "vercel-build": "prisma generate && prisma migrate deploy && prisma db seed && next build",
     "prisma:generate": "prisma generate"
   },
   "dependencies": {
@@ -23,6 +23,7 @@
     "react-content-loader": "^7.0.0",
     "react-dom": "^19.0.0-beta-04b058868c-20240508",
     "react-toastify": "^10.0.5",
+    "ts-node": "^10.9.2",
     "zod": "^3.23.8"
   },
   "overrides": {
@@ -39,5 +40,8 @@
     "tailwind-scrollbar": "^3.1.0",
     "tailwindcss": "^3",
     "typescript": "^5"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   }
 }

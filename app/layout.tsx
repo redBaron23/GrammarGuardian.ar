@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./Providers";
 import { auth } from "@/lib/auth";
+import { getChats } from "@/lib/chat";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,6 +18,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await auth();
+  const chats = session?.user?.id ? await getChats(session?.user?.id) : [];
 
   return (
     <html
@@ -24,7 +26,9 @@ export default async function RootLayout({
       className="scrollbar-thumb-indigo-400 scrollbar-track-indigo-50"
     >
       <body className={inter.className}>
-        <Providers session={session}>{children}</Providers>
+        <Providers session={session} chats={chats}>
+          {children}
+        </Providers>
       </body>
     </html>
   );

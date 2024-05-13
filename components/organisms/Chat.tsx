@@ -1,6 +1,6 @@
-import { getMessages } from "@/app/actions/chatActions";
 import MessageList from "../moleculas/MessageList";
 import ChatInput from "../moleculas/ChatInput";
+import { getMessages } from "@/lib/chat";
 
 interface Props {
   chatId?: string;

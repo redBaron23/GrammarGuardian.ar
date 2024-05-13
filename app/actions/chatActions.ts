@@ -15,7 +15,7 @@ const addGuardianMessage = async (message: string, chatId: string) => {
   try {
     const guardianMessage = await askGuardian(message);
 
-    const chat = await prisma.chat.update({
+    await prisma.chat.update({
       where: { id: chatId },
       data: {
         messages: {
@@ -86,24 +86,5 @@ export const addMessage = async (
   } catch (e) {
     console.log(e);
     return { error: DEFAULT_ERROR_MESSAGE };
-  }
-};
-
-export const getMessages = async (chatId?: string) => {
-  if (!chatId) {
-    return [];
-  }
-
-  try {
-    const messages = await prisma.message.findMany({
-      where: {
-        chatId,
-      },
-    });
-
-    return messages;
-  } catch (e) {
-    console.error(e);
-    return [];
   }
 };

@@ -10,13 +10,14 @@ import "react-toastify/dist/ReactToastify.css";
 interface Props {
   session: Session | null;
   children: ReactNode;
+  chats: any;
 }
 
-export function Providers({ session, children }: Props) {
+export async function Providers({ session, chats, children }: Props) {
   return (
     <SessionProvider session={session}>
       <ToastContainer />
-      <Sidebar>{children}</Sidebar>
+      <Sidebar chats={chats}>{children}</Sidebar>
     </SessionProvider>
   );
 }

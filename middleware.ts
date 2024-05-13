@@ -8,10 +8,11 @@ import { isUnprotectedRoute, isProtectedRoute } from "./utils/helpers";
 import pages from "./constants/pages";
 
 const withAuthRedirect = async (req: NextRequestWithAuth) => {
-  const isAuthenticated = !!(await getToken({
+  const isAuthenticated = await getToken({
     req,
-    cookieName: "next-auth.session-token",
-  }));
+  });
+
+  console.log({ isAuthenticated });
 
   const currentPath = req.nextUrl.pathname;
 

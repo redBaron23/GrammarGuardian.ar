@@ -3,12 +3,9 @@ interface Props {
   className?: string;
 }
 
-const HamburgerMenu = ({ onClick, className }: Props) => {
+const CloseButton = ({ onClick, className }: Props) => {
   return (
-    <div
-      aria-label="toggler"
-      className={`flex justify-center items-center ${className}`}
-    >
+    <div aria-label="toggler" className={className}>
       <button
         aria-label="close"
         id="close"
@@ -43,4 +40,4 @@ const HamburgerMenu = ({ onClick, className }: Props) => {
   );
 };
 
-export default HamburgerMenu;
+export default CloseButton;

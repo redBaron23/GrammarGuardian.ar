@@ -1,5 +1,4 @@
 "use client";
-// import { useSession } from "next-auth/react";
 import { useEffect, useRef } from "react";
 import { BulletList } from "react-content-loader";
 import Message from "../atoms/Message";
@@ -10,9 +9,6 @@ interface Props {
 }
 
 const MessageList = ({ messages }: Props) => {
-  // const { status } = useSession();
-  // const isLoading = status === "loading";
-  const isLoading = false;
   const messageListRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -24,12 +20,11 @@ const MessageList = ({ messages }: Props) => {
   return (
     <div
       ref={messageListRef}
-      className="flex flex-col h-full overflow-y-auto mb-4 scrollbar-thin"
+      className="flex flex-col h-full overflow-y-auto mb-4 scrollbar-thin pt-12 lg:pt-0"
     >
       <div className="flex flex-col h-full">
-        {isLoading && <BulletList backgroundColor="rgb(229 231 235)" />}
         <div className="grid grid-cols-12 gap-y-2">
-          {!isLoading &&
+          {messages &&
             messages.map((message, index) => (
               <Message {...message} key={`${message.id}/${index}`} />
             ))}

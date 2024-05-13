@@ -29,13 +29,17 @@ const Sidebar = ({ children }: Props) => {
   return (
     <div className="flex flex-row overflow-y-hidden h-screen w-screen bg-gray-700">
       <div
-        className={`${sidebarClassName} flex-col transition-all duration-300 ease-in-out lg:flex lg:w-auto justify-start items-start xl:rounded-r lg:p-6 shadow-lg`}
+        className={`${sidebarClassName} flex-col transition-all duration-300 ease-in-out lg:flex lg:w-auto xl:rounded-r lg:p-6 `}
       >
-        <div className="flex justify-between items-center w-full p-6">
-          <div className="flex flex-col justify-start items-center space-x-4 gap-5">
+        <CloseButton
+          className="lg:hidden flex justify-end pe-6 pt-6"
+          onClick={handleCloseSidebar}
+        />
+        <div className="flex justify-center items-center w-full p-6">
+          <div className="flex flex-col items-center gap-4">
             <Image
-              width={121}
-              height={121}
+              width={150}
+              height={150}
               alt="Profile picture"
               referrerPolicy="no-referrer"
               className="rounded-full border-4 border-yellow-400"
@@ -46,7 +50,6 @@ const Sidebar = ({ children }: Props) => {
               GrammarGuardian.ar
             </p>
           </div>
-          <CloseButton className="lg:hidden" onClick={handleCloseSidebar} />
         </div>
 
         <div className="w-full border-gray-600 border-b p-6">
@@ -68,31 +71,17 @@ const Sidebar = ({ children }: Props) => {
             <span>New Lesson</span>
           </button>
         </div>
-        <div className="flex flex-col justify-start items-center px-6 border-gray-600 w-full">
-          <div className="flex justify-between items-center w-full py-5 space-x-14">
+        <div className="flex flex-col px-6 border-gray-600 w-full">
+          <div className="flex py-5">
             <p className="text-base leading-6 uppercase">Lessons</p>
           </div>
-          <div className="flex justify-start flex-col w-full items-start pb-1">
-            <div className="flex justify-start items-center space-x-4 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded-lg px-4 py-2 w-full transition duration-200 cursor-pointer">
+          <div className="flex flex-col items-start pb-1">
+            <div className="bg-red">
               <div>
                 <p className="text-lg leading-5">Lesson 1: Introduction</p>
                 <p className="text-sm text-gray-500">
                   Get started with language basics
                 </p>
-              </div>
-            </div>
-            <div className="flex justify-start items-center space-x-4 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded-lg px-4 py-2 w-full transition duration-200 cursor-pointer">
-              <div>
-                <p className="text-lg leading-5">Lesson 2: Grammar</p>
-                <p className="text-sm text-gray-500">
-                  Learn essential grammar rules
-                </p>
-              </div>
-            </div>
-            <div className="flex justify-start items-center space-x-4 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded-lg px-4 py-2 w-full transition duration-200 cursor-pointer">
-              <div>
-                <p className="text-lg leading-5">Lesson 3: Vocabulary</p>
-                <p className="text-sm text-gray-500">Expand your vocabulary</p>
               </div>
             </div>
           </div>

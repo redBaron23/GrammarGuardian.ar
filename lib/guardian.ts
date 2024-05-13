@@ -1,32 +1,25 @@
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import OpenAI from "openai";
 
-interface ChatGPTResponse {
-  id: string;
-  object: string;
-  created: number;
-  model: string;
-  usage: {
-    prompt_tokens: number;
-    completion_tokens: number;
-    total_tokens: number;
-  };
-  choices: {
-    message: {
-      role: string;
-      content: string;
-    };
-    finish_reason: string;
-    index: number;
-  }[];
-}
-
-const url = "https://api.openai.com/v1/chat/completions";
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
+const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 export async function askGuardian(prompt: string): Promise<string> {
+  const result = await model.generateContent(prompt);
+  const response = result.response;
+  const text = response.text();
+
+  return text;
+}
+
+const askOpenAi = async (prompt: string) => {
   const modelId = "gpt-3.5-turbo";
 
   try {
-    const openai = new OpenAI();
+    const openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+      project: "test",
+    });
 
     const generatedText = await openai.chat.completions.create({
       messages: [{ role: "user", content: prompt }],
@@ -35,9 +28,9 @@ export async function askGuardian(prompt: string): Promise<string> {
 
     console.log({ generatedText });
 
-    return "generatedText";
+    return generatedText;
   } catch (error) {
     console.error("Error:", error);
     throw new Error("Failed to get response from ChatGPT API");
   }
-}
+};

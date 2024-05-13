@@ -15,6 +15,19 @@ const withAuthRedirect = async (req: NextRequestWithAuth) => {
 
   const currentPath = req.nextUrl.pathname;
 
+  console.warn("Data", {
+    isAuthenticated,
+    currentPath,
+    unpro: isUnprotectedRoute(currentPath),
+    pro: isProtectedRoute(currentPath),
+  });
+
+  console.warn(
+    `Redirect from ${currentPath} to ...chat? ${
+      isAuthenticated && isUnprotectedRoute(currentPath)
+    } or ..... to /  ${!isAuthenticated && isProtectedRoute(currentPath)}`
+  );
+
   if (isAuthenticated && isUnprotectedRoute(currentPath)) {
     return NextResponse.redirect(new URL(pages.chat, req.url));
   }

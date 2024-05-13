@@ -67,7 +67,7 @@ const Sidebar = ({ children, chats }: Props) => {
               key={`${chat.id}/${index}`}
               className="flex flex-col items-start pb-1"
             >
-              <Link href={`/chat/${chat.id}`}>
+              <Link href={`/chat/${chat.id}`} onClick={handleCloseSidebar}>
                 <div>
                   <p className="text-lg leading-5">
                     Lesson {index}: Introduction

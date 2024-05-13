@@ -13,7 +13,7 @@ const Message = ({ text, senderId, seen }: Props) => {
   const isSelfMessage = senderId === data?.user.id;
 
   const mainContainerStyles = isSelfMessage
-    ? "col-start-6 col-end-13 p-3 rounded-lg"
+    ? "col-start-6 col-end-13 p-3 pe-2 rounded-lg"
     : "col-start-1 col-end-8 p-3 rounded-lg";
   const containerStyles = isSelfMessage
     ? "flex items-center justify-start flex-row-reverse"

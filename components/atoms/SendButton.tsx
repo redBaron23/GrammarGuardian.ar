@@ -8,7 +8,7 @@ const SendButton = ({
 }: ButtonHTMLAttributes<HTMLButtonElement>) => {
   const { pending, data } = useFormStatus();
 
-  const isDisabled = disabled || pending || !data;
+  const isDisabled = disabled || pending;
 
   const disabledClassName = isDisabled
     ? "bg-indigo-200"

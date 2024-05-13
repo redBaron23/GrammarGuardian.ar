@@ -1,6 +1,6 @@
 "use server";
 
-import { DEFAULT_ERROR_MESSAGE } from "@/constants/Global";
+import { DEFAULT_ERROR_MESSAGE } from "@/constants/global";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { revalidateTag } from "next/cache";

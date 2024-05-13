@@ -1,10 +1,12 @@
-import { PROTECTED_ROUTES, UNPROTECTED_ROUTES } from "@/constants/Global";
+import { PROTECTED_ROUTES, UNPROTECTED_ROUTES } from "@/constants/global";
+import pages from "@/constants/pages";
 
 const isPathOnArray = (currentPath: string, array: string[]): boolean => {
   return array.some((route) => currentPath.startsWith(route));
 };
 
-const isIndexRoute = (currentPath: string): boolean => currentPath === "/";
+const isIndexRoute = (currentPath: string): boolean =>
+  currentPath === pages.index;
 
 const isProtectedRoute = (currentPath: string): boolean =>
   isPathOnArray(currentPath, PROTECTED_ROUTES);

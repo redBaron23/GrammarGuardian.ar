@@ -5,14 +5,16 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
+import { askGuardian } from "@/lib/guardian";
 
 interface MessagesInput {
   chatId?: string;
 }
 
-const addGuardianMessage = async (chatId: string) => {
+const addGuardianMessage = async (message: string, chatId: string) => {
   try {
-    const guardianMessage = "Hey, idk";
+    const guardianMessage = await askGuardian(message);
+
     const chat = await prisma.chat.update({
       where: { id: chatId },
       data: {
@@ -78,7 +80,7 @@ export const addMessage = async (
 
     revalidateTag("/messages");
 
-    await addGuardianMessage(chatId);
+    await addGuardianMessage(text, chatId);
 
     return { error: null, chat };
   } catch (e) {

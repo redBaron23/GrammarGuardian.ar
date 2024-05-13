@@ -8,8 +8,8 @@ async function main() {
     update: {},
     create: {
       id: "0",
-      email: "bot@example.com",
-      name: "Bot",
+      email: "bot@grammarguardian.ar",
+      name: "Grammar Guardian.ar",
       isGuardian: true,
     },
   });

@@ -5,11 +5,16 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
 const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 export async function askGuardian(prompt: string): Promise<string> {
-  const result = await model.generateContent(prompt);
-  const response = result.response;
-  const text = response.text();
+  try {
+    const result = await model.generateContent(prompt);
+    const response = result.response;
+    const text = response.text();
 
-  return text;
+    return text;
+  } catch (e) {
+    console.error(`Algo fallo ${e}`);
+    return "IDK";
+  }
 }
 
 const askOpenAi = async (prompt: string) => {

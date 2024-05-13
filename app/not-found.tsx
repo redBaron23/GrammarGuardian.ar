@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function NotFoundPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 flex items-center justify-center">
+    <div className="min-h-screen rounded-2xl bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 flex items-center justify-center">
       <Head>
         <title>Page Not Found | Grammar Guardian.ar</title>
         <link rel="icon" href="/favicon.ico" />

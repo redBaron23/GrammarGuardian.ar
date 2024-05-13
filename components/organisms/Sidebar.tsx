@@ -27,7 +27,7 @@ const Sidebar = ({ children }: Props) => {
   }
 
   return (
-    <div className="flex flex-row overflow-y-hidden h-screen w-screen bg-blue-800">
+    <div className="flex flex-row overflow-y-hidden h-screen w-screen bg-gray-700">
       <div
         className={`${sidebarClassName} flex-col transition-all duration-300 ease-in-out lg:flex lg:w-auto justify-start items-start xl:rounded-r lg:p-6 shadow-lg`}
       >

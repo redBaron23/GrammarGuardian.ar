@@ -32,7 +32,7 @@ const Dropdown = () => {
         <Image src={dotMenu} alt="dot-menu" />
       </button>
       {open && (
-        <div className="absolute w-60 px-5 py-3 dark:bg-gray-900 bg-white rounded-lg shadow border dark:border-transparent -mt-48">
+        <div className="absolute w-60 px-5 py-3 dark:bg-gray-800 bg-white rounded-lg shadow border dark:border-transparent -mt-48">
           <ul className="space-y-3 dark:text-white">
             <DropdownOption
               label="Account"

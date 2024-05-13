@@ -18,7 +18,8 @@ export async function POST(req: NextRequest) {
   const reqPromise: Promise<MessageCreateInput> = await req.json();
   const tokenPromise = getToken({
     req,
-    cookieName: "next-auth.session-token",
+    // nto neccessary
+    // cookieName: "next-auth.session-token",
   });
 
   const [{ text }, token] = await Promise.all([reqPromise, tokenPromise]);

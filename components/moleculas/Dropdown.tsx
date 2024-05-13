@@ -27,7 +27,7 @@ const Dropdown = () => {
     <div className="flex justify-end items-center relative">
       <button
         onClick={() => setOpen(!open)}
-        className="relative z-10 block p-2 text-gray-700 bg-white border border-transparent rounded-md dark:text-white focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:bg-gray-800 focus:outline-none"
+        className="relative z-10 block p-2 text-gray-700 bg-transparent border border-transparent rounded-md dark:text-white focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring focus:outline-none"
       >
         <Image src={dotMenu} alt="dot-menu" />
       </button>

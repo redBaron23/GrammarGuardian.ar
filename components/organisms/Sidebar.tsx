@@ -27,18 +27,18 @@ const Sidebar = ({ children }: Props) => {
   }
 
   return (
-    <div className="flex flex-row overflow-y-hidden h-screen w-screen">
+    <div className="flex flex-row overflow-y-hidden h-screen w-screen bg-blue-800">
       <div
-        className={`${sidebarClassName} flex-col transition-all duration-300 ease-in-out lg:flex lg:w-auto justify-start items-start xl:rounded-r bg-gray-800 lg:p-6 shadow-lg`}
+        className={`${sidebarClassName} flex-col transition-all duration-300 ease-in-out lg:flex lg:w-auto justify-start items-start xl:rounded-r lg:p-6 shadow-lg`}
       >
         <div className="flex justify-between items-center w-full p-6">
-          <div className="flex justify-start items-center space-x-4">
+          <div className="flex flex-col justify-start items-center space-x-4 gap-5">
             <Image
-              width={50}
-              height={50}
+              width={121}
+              height={121}
               alt="Profile picture"
               referrerPolicy="no-referrer"
-              className="rounded-full border-2 border-yellow-400"
+              className="rounded-full border-4 border-yellow-400"
               src="/logo.png"
               priority
             />

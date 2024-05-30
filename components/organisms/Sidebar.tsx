@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import UserProfileCard from "../moleculas/UserProfileCard";
 import { ReactNode, useState } from "react";
 import Link from "next/link";
+import bin from "@/public/assets/bin.svg";
 
 interface Props {
   children?: ReactNode;
@@ -33,7 +34,7 @@ const Sidebar = ({ children, chats }: Props) => {
   return (
     <div className="flex flex-row overflow-y-hidden h-screen w-screen bg-gray-700">
       <div
-        className={`${sidebarClassName} flex-col transition-all duration-300 ease-in-out lg:flex lg:w-auto xl:rounded-r lg:p-6 `}
+        className={`${sidebarClassName} flex-col justify-between transition-all duration-300 ease-in-out lg:flex lg:w-auto xl:rounded-r lg:p-6 `}
       >
         <CloseButton
           className="lg:hidden flex justify-end pe-6 pt-6"
@@ -65,7 +66,7 @@ const Sidebar = ({ children, chats }: Props) => {
           {chats.map((chat: any, index: any) => (
             <div
               key={`${chat.id}/${index}`}
-              className="flex flex-col items-start pb-1"
+              className="flex items-start pt-2 pb-2 justify-between content-center"
             >
               <Link href={`/chat/${chat.id}`} onClick={handleCloseSidebar}>
                 <div>
@@ -75,6 +76,7 @@ const Sidebar = ({ children, chats }: Props) => {
                   <p className="text-sm text-gray-500">{chat.id}</p>
                 </div>
               </Link>
+              <Image src={bin} alt="bin" />
             </div>
           ))}
         </div>

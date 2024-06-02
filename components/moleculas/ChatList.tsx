@@ -1,8 +1,6 @@
-import { removeChat } from "@/lib/chat";
 import { Chat } from "@prisma/client";
 import Link from "next/link";
-import Bin from "@/public/assets/bin.svg";
-import { useActionState } from "react";
+import ChatRemover from "../atoms/ChatRemover";
 
 interface Props {
   chats: Chat[];
@@ -10,10 +8,6 @@ interface Props {
 }
 
 const ChatList = ({ chats, onClickLink }: Props) => {
-  const [state, submitAction, isPending] = useActionState(removeChat, {
-    error: null,
-  });
-
   return chats.map((chat: Chat, index: number) => (
     <div
       key={`${chat.id}/${index}`}
@@ -25,15 +19,7 @@ const ChatList = ({ chats, onClickLink }: Props) => {
           <p className="text-sm text-gray-500">{chat.id}</p>
         </div>
       </Link>
-      <form action={submitAction}>
-        <button type="submit">
-          <Bin
-            width="25px"
-            height="25px"
-            className="text-red-500 cursor-pointer"
-          />
-        </button>
-      </form>
+      <ChatRemover chatId={chat.id} />
     </div>
   ));
 };

@@ -88,3 +88,25 @@ export const addMessage = async (
     return { error: DEFAULT_ERROR_MESSAGE };
   }
 };
+
+export const removeChat = async ({ chatId }: MessagesInput) => {
+  const session = await auth();
+  const userId = session?.user.id;
+
+  if (!userId) {
+    return;
+  }
+
+  try {
+    await prisma.chat.delete({
+      where: {
+        userId,
+        id: chatId,
+      },
+    });
+
+    revalidateTag("/chats");
+  } catch (e) {
+    console.log(`Error deleting ${chatId} from user ${userId}: ${e}`);
+  }
+};

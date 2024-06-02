@@ -44,24 +44,3 @@ export const getChats = async () => {
     return [];
   }
 };
-
-export const removeChat = async () => {
-  // const session = await auth();
-  // const userId = session?.user.id;
-
-  console.log("SERVER SIDE");
-  // if (!userId) {
-  //   return;
-  // }
-
-  // try {
-  //   await prisma.chat.delete({
-  //     where: {
-  //       userId,
-  //       id: chatId,
-  //     },
-  //   });
-  // } catch (e) {
-  //   console.log(`Error deleting ${chatId} from user ${userId}: ${e}`);
-  // }
-};

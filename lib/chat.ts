@@ -20,7 +20,10 @@ export const getMessages = async (chatId?: string) => {
   }
 };
 
-export const getChats = async (userId: string) => {
+export const getChats = async () => {
+  const session = await auth();
+  const userId = session?.user.id;
+
   if (!userId) {
     return [];
   }
@@ -40,4 +43,25 @@ export const getChats = async (userId: string) => {
     console.error(e);
     return [];
   }
+};
+
+export const removeChat = async () => {
+  // const session = await auth();
+  // const userId = session?.user.id;
+
+  console.log("SERVER SIDE");
+  // if (!userId) {
+  //   return;
+  // }
+
+  // try {
+  //   await prisma.chat.delete({
+  //     where: {
+  //       userId,
+  //       id: chatId,
+  //     },
+  //   });
+  // } catch (e) {
+  //   console.log(`Error deleting ${chatId} from user ${userId}: ${e}`);
+  // }
 };

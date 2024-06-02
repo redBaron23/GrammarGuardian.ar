@@ -31,8 +31,6 @@ const askOpenAi = async (prompt: string) => {
       model: modelId,
     });
 
-    console.log({ generatedText });
-
     return generatedText;
   } catch (error) {
     console.error("Error:", error);

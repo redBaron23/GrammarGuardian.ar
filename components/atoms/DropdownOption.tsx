@@ -1,13 +1,14 @@
 import Image from "next/image";
+import { FunctionComponent } from "react";
 
 interface Props {
   label: string;
   onClick?: () => void;
-  icon: string;
+  Icon: FunctionComponent<React.SVGProps<SVGSVGElement>>;
   danger?: boolean;
 }
 
-const DropdownOption = ({ onClick, label, icon, danger = false }: Props) => {
+const DropdownOption = ({ onClick, label, Icon, danger = false }: Props) => {
   const hoverColor = danger ? "red" : "indigo";
 
   return (
@@ -16,8 +17,8 @@ const DropdownOption = ({ onClick, label, icon, danger = false }: Props) => {
         className={`flex cursor-pointer items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-${hoverColor}-600`}
         onClick={onClick}
       >
-        <div className="mr-3 invert">
-          <Image src={icon} alt={label} />
+        <div className="mr-3 text-white">
+          <Icon width="25px" />
         </div>
         {label}
       </a>

@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { BulletList } from "react-content-loader";
 import Message from "../atoms/Message";
 import { MessageType } from "@/lib/validations/MessageValidation";
 

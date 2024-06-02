@@ -7,11 +7,13 @@ import { useSession } from "next-auth/react";
 import UserProfileCard from "../moleculas/UserProfileCard";
 import { ReactNode, useState } from "react";
 import Link from "next/link";
-import bin from "@/public/assets/bin.svg";
+import { removeChat } from "@/lib/chat";
+import { Chat } from "@prisma/client";
+import ChatList from "../moleculas/ChatList";
 
 interface Props {
   children?: ReactNode;
-  chats: any;
+  chats: Chat[];
 }
 
 const Sidebar = ({ children, chats }: Props) => {
@@ -20,8 +22,6 @@ const Sidebar = ({ children, chats }: Props) => {
 
   const handleCloseSidebar = () => setIsSidebarVisible(false);
   const handleOpenSidebar = () => setIsSidebarVisible(true);
-
-  console.log(chats);
 
   const contentClassName = isSidebarVisible ? "hidden" : "flex-1";
   const sidebarClassName = isSidebarVisible ? "flex w-full" : "w-0 ";
@@ -62,23 +62,7 @@ const Sidebar = ({ children, chats }: Props) => {
           <div className="flex py-5">
             <p className="text-base leading-6 uppercase">Lessons</p>
           </div>
-
-          {chats.map((chat: any, index: any) => (
-            <div
-              key={`${chat.id}/${index}`}
-              className="flex items-start pt-2 pb-2 justify-between content-center"
-            >
-              <Link href={`/chat/${chat.id}`} onClick={handleCloseSidebar}>
-                <div>
-                  <p className="text-lg leading-5">
-                    Lesson {index}: Introduction
-                  </p>
-                  <p className="text-sm text-gray-500">{chat.id}</p>
-                </div>
-              </Link>
-              <Image src={bin} alt="bin" />
-            </div>
-          ))}
+          <ChatList chats={chats} onClickLink={handleCloseSidebar} />
         </div>
         <div
           className={`${

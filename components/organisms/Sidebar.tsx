@@ -6,8 +6,6 @@ import HamburgerButton from "../atoms/HamburgerButton";
 import { useSession } from "next-auth/react";
 import UserProfileCard from "../moleculas/UserProfileCard";
 import { ReactNode, useState } from "react";
-import Link from "next/link";
-import { removeChat } from "@/lib/chat";
 import { Chat } from "@prisma/client";
 import ChatList from "../moleculas/ChatList";
 

@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 interface Props {
   session: Session | null;
   children: ReactNode;
-  chats: Chat;
+  chats: Chat[];
 }
 
 export function Providers({ session, chats, children }: Props) {

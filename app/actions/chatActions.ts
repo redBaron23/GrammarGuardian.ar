@@ -15,6 +15,8 @@ const addGuardianMessage = async (message: string, chatId: string) => {
   try {
     const guardianMessage = await askGuardian(message);
 
+    console.log({ guardianMessage });
+
     await prisma.chat.update({
       where: { id: chatId },
       data: {

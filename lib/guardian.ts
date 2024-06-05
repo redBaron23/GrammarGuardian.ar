@@ -1,10 +1,21 @@
+import { PROMPTS } from "@/constants/global";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import OpenAI from "openai";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
 const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-export async function askGuardian(prompt: string): Promise<string> {
+export async function askGuardian(prompt: string) {
+  const text = await askOpenAi(prompt);
+
+  if (!text) {
+    throw new Error("Failed to get response from ChatGPT API");
+  }
+
+  return text;
+}
+
+async function askGemini(prompt: string): Promise<string> {
   try {
     const result = await model.generateContent(prompt);
     const response = result.response;
@@ -17,21 +28,29 @@ export async function askGuardian(prompt: string): Promise<string> {
   }
 }
 
-const askOpenAi = async (prompt: string) => {
-  const modelId = "gpt-3.5-turbo";
+const askOpenAi = async (userSentence: string) => {
+  const modelId = "gpt-4o";
+
+  // Define the system message
+  const systemMessage = PROMPTS.ASSISTANT;
 
   try {
     const openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY,
-      project: "test",
+      project: process.env.OPENAI_PROJECT,
     });
 
-    const generatedText = await openai.chat.completions.create({
-      messages: [{ role: "user", content: prompt }],
+    const completion = await openai.chat.completions.create({
+      messages: [
+        { role: "system", content: systemMessage },
+        { role: "user", content: userSentence },
+      ],
       model: modelId,
     });
 
-    return generatedText;
+    console.log(completion.choices);
+
+    return completion.choices[0].message.content;
   } catch (error) {
     console.error("Error:", error);
     throw new Error("Failed to get response from ChatGPT API");

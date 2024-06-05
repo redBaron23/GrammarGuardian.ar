@@ -11,6 +11,9 @@ export const getMessages = async (chatId?: string) => {
       where: {
         chatId,
       },
+      orderBy: {
+        createdAt: "asc",
+      },
     });
 
     return messages;

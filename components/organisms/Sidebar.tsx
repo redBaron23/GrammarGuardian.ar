@@ -38,30 +38,33 @@ const Sidebar = ({ children, chats }: Props) => {
           className="lg:hidden flex justify-end pe-6 pt-6"
           onClick={handleCloseSidebar}
         />
-        <div className="flex justify-center items-center w-full p-6">
-          <div className="flex flex-col items-center gap-4">
-            <Image
-              width={150}
-              height={150}
-              alt="Profile picture"
-              referrerPolicy="no-referrer"
-              className="rounded-full border-4 border-yellow-400"
-              src="/logo.png"
-              priority
-            />
-            <p className="text-2xl font-bold leading-6 bg-gradient-to-r from-blue-300 via-white to-yellow-400 via-white to-blue-300 bg-clip-text text-transparent">
-              GrammarGuardian.ar
-            </p>
+        <div>
+          <div className="flex justify-center items-center w-full p-6">
+            <div className="flex flex-col items-center gap-4">
+              <Image
+                width={150}
+                height={150}
+                alt="Profile picture"
+                referrerPolicy="no-referrer"
+                className="rounded-full border-4 border-yellow-400"
+                src="/logo.png"
+                priority
+              />
+              <p className="text-2xl font-bold leading-6 bg-gradient-to-r from-blue-300 via-white to-yellow-400 via-white to-blue-300 bg-clip-text text-transparent">
+                GrammarGuardian.ar
+              </p>
+            </div>
+          </div>
+
+          <div className="w-full border-gray-600 border-b p-6" />
+          <div className="flex flex-col px-6 border-gray-600 w-full overflow-y-scroll mb-5 scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-700">
+            <div className="flex py-5">
+              <p className="text-base leading-6 uppercase">Lessons</p>
+            </div>
+            <ChatList chats={chats} onClickLink={handleCloseSidebar} />
           </div>
         </div>
 
-        <div className="w-full border-gray-600 border-b p-6" />
-        <div className="flex flex-col px-6 border-gray-600 w-full overflow-y-scroll mb-5 scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-700">
-          <div className="flex py-5">
-            <p className="text-base leading-6 uppercase">Lessons</p>
-          </div>
-          <ChatList chats={chats} onClickLink={handleCloseSidebar} />
-        </div>
         <div
           className={`${
             chats.length ? "" : "h-full"

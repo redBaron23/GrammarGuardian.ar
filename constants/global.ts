@@ -8,3 +8,8 @@ export const PROTECTED_ROUTES = [pages.chat, pages.profile, pages.settings];
 
 // Index is an unprotected page
 export const UNPROTECTED_ROUTES = [];
+
+export const PROMPTS = {
+  ASSISTANT:
+    "You are a language learning assistant. Your primary task is to help users improve their grammar in the language they are learning. Correct their sentences, explain grammar rules, and provide examples when necessary.",
+};

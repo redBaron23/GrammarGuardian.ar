@@ -21,7 +21,7 @@
     "@types/react-dom": "npm:types-react-dom@beta",
     "next": "^15.0.0-rc.0",
     "next-auth": "^4.24.7",
-    "openai": "^4.47.2",
+    "openai": "^4.47.3",
     "react": "^19.0.0-rc-6d3110b4d9-20240531",
     "react-content-loader": "^7.0.0",
     "react-dom": "^19.0.0-rc-6d3110b4d9-20240531",

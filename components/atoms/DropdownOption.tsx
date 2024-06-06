@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { FunctionComponent } from "react";
 
 interface Props {

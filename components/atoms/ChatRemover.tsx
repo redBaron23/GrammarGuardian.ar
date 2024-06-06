@@ -1,5 +1,5 @@
 import { removeChat } from "@/app/actions/chatActions";
-// import Bin from "@/public/assets/bin.svg";
+import Bin from "@/public/assets/bin.svg";
 import { useActionState } from "react";
 
 const initialState = {
@@ -19,11 +19,11 @@ const ChatRemover = ({ chatId }: Props) => {
       })}
     >
       <button type="submit">
-        {/* <Bin
+        <Bin
           width="25px"
           height="25px"
           className="text-red-500 cursor-pointer"
-        /> */}
+        />
       </button>
     </form>
   );

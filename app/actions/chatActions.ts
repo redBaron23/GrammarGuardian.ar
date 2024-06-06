@@ -15,8 +15,6 @@ const addGuardianMessage = async (message: string, chatId: string) => {
   try {
     const guardianMessage = await askGuardian(message);
 
-    console.log({ guardianMessage });
-
     await prisma.chat.update({
       where: { id: chatId },
       data: {
@@ -31,7 +29,7 @@ const addGuardianMessage = async (message: string, chatId: string) => {
 
     revalidateTag("/messages");
   } catch (e) {
-    console.log("se rompio");
+    console.log(`addGuardianMessage error: ${e}`);
   }
 };
 

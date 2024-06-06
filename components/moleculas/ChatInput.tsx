@@ -4,6 +4,7 @@ import { useActionState, useState, useEffect } from "react";
 import AttachmentInput from "../atoms/AttachmentInput";
 import SendButton from "../atoms/SendButton";
 import { addMessage } from "@/app/actions/chatActions";
+import { toast } from "react-toastify";
 
 const initialState = {
   error: null,
@@ -84,7 +85,7 @@ const ChatInput = ({ chatId }: Props) => {
               className={`flex w-full rounded-xl focus:outline-none px-4 py-2 resize-none ${
                 isMultiline ? "overflow-y-auto" : "overflow-hidden"
               }`}
-              placeholder="Ask GrammarGuardian..."
+              placeholder="Enter a sentence or paragraph that you would like to improve..."
             />
           </div>
         </div>

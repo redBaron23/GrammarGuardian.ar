@@ -29,7 +29,8 @@ async function askGemini(prompt: string): Promise<string> {
 }
 
 const askOpenAi = async (userSentence: string) => {
-  const modelId = "gpt-4o";
+  // const modelId = "gpt-4o";
+  const modelId = "gpt-3.5-turbo-1106";
 
   // Define the system message
   const systemMessage = PROMPTS.ASSISTANT;
@@ -47,8 +48,6 @@ const askOpenAi = async (userSentence: string) => {
       ],
       model: modelId,
     });
-
-    console.log(completion.choices);
 
     return completion.choices[0].message.content;
   } catch (error) {

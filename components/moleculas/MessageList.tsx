@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useRef } from "react";
 import Message from "../atoms/Message";
 import { MessageType } from "@/lib/validations/MessageValidation";

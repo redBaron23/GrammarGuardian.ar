@@ -1663,12 +1663,19 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@18.3.2":
+"@types/react@*":
   version "18.3.2"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.3.2.tgz#462ae4904973bc212fa910424d901e3d137dbfcd"
   integrity sha512-Btgg89dAnqD4vV7R3hlwOxgqobUQKgx3MmrQRi0yYbs/P0ym8XozIAlkqVilPqHQwXs4e9Tf63rrCgl58BcO4w==
   dependencies:
     "@types/prop-types" "*"
+    csstype "^3.0.2"
+
+"@types/react@npm:types-react@beta":
+  version "19.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/types-react/-/types-react-19.0.0-beta.2.tgz#036a2f95c63a242f7f5d35f30eaeba323572a049"
+  integrity sha512-bcE50h2P/Ajmf3jMPIqL01PDqxo8lwqRIy3idjyadaLKF9vcXbma2CsJkKj0KHBAFllQZkXLTJ8ZpwmUnTv5EQ==
+  dependencies:
     csstype "^3.0.2"
 
 "@types/unist@*", "@types/unist@^3.0.0":

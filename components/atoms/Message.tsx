@@ -3,6 +3,7 @@
 import { MessageType } from "@/lib/validations/MessageValidation";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import ReactMarkdown from "react-markdown";
 
 type Props = {
   seen?: boolean;
@@ -52,11 +53,11 @@ const Message = ({ text, senderId, seen }: Props) => {
           {image}
         </div>
         <div
-          className={`relative mx-3 text-sm py-2 px-4 shadow rounded-xl ${messageBg}`}
+          className={`relative mx-3 py-2 px-4 shadow rounded-xl ${messageBg}`}
         >
-          <div>{text}</div>
+          <ReactMarkdown className="text-base lg:text-lg">{text}</ReactMarkdown>{" "}
           {seen && (
-            <div className="absolute text-xs bottom-0 right-0 -mb-5 mr-2 text-gray-500">
+            <div className="absolute text-xs sm:text-sm md:text-base bottom-0 right-0 -mb-5 mr-2 text-gray-500">
               Seen
             </div>
           )}

@@ -1,3 +1,5 @@
+"use client";
+
 import { ButtonHTMLAttributes } from "react";
 import Spinner from "./Spinner";
 import { useFormStatus } from "react-dom";
@@ -6,7 +8,7 @@ const SendButton = ({
   disabled,
   ...otherProps
 }: ButtonHTMLAttributes<HTMLButtonElement>) => {
-  const { pending, data } = useFormStatus();
+  const { pending } = useFormStatus();
 
   const isDisabled = disabled || pending;
 

@@ -1,10 +1,9 @@
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useState, useEffect } from "react";
 import AttachmentInput from "../atoms/AttachmentInput";
 import SendButton from "../atoms/SendButton";
 import { addMessage } from "@/app/actions/chatActions";
-import { toast } from "react-toastify";
 
 const initialState = {
   error: null,
@@ -41,9 +40,10 @@ const ChatInput = ({ chatId }: Props) => {
   }, [error]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.altKey && e.key === "Enter") {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      setText((prevText) => prevText + "\n");
+      formAction(new FormData(e.currentTarget.form || undefined));
+      setText("");
     }
   };
 
@@ -52,8 +52,8 @@ const ChatInput = ({ chatId }: Props) => {
   };
 
   const textareaStyle = {
-    height: `${Math.min(200, Math.max(32, text.split("\n").length * 24))}px`, // Adjust the maximum height and line height
-    lineHeight: "24px", // Set the line height to match the calculation above
+    height: `${Math.min(200, Math.max(32, text.split("\n").length * 24))}px`,
+    lineHeight: "24px",
   };
 
   const isMultiline = text.split("\n").length > 1;
@@ -66,9 +66,7 @@ const ChatInput = ({ chatId }: Props) => {
         }`}
         style={{ minHeight: "4rem" }}
         action={formAction}
-        onInvalid={(e) => {
-          e.preventDefault();
-        }}
+        noValidate
       >
         <div className={`ml-4 ${isMultiline ? "pb-4" : ""}`}>
           <AttachmentInput />

@@ -42,4 +42,15 @@ const getGuardianDisplayMessage = (message: string) => {
   return grammarAnswer;
 };
 
-export { isProtectedRoute, isUnprotectedRoute, getGuardianDisplayMessage };
+const getMessageToCopy = (message: string): string => {
+  // Remove bold formatting (**text**) from the message
+  const messageWithoutBold = message.replace(/\*\*(.*?)\*\*/g, "$1");
+  return messageWithoutBold;
+};
+
+export {
+  isProtectedRoute,
+  isUnprotectedRoute,
+  getGuardianDisplayMessage,
+  getMessageToCopy,
+};

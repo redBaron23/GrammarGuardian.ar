@@ -6,7 +6,7 @@ import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
-import CodeBlock from "../atoms/CodeBlock";
+import CodeBlock from "../moleculas/CodeBlock";
 
 type Props = {
   seen?: boolean;
@@ -63,9 +63,7 @@ const Message = ({ text, senderId, seen }: Props) => {
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeHighlight]}
             components={{
-              code: ({ className, children }: any) => (
-                <CodeBlock className={className}>{children}</CodeBlock>
-              ),
+              code: ({ children }: any) => <CodeBlock>{children}</CodeBlock>,
               p: ({ node, ...props }: any) => <div {...props} />,
             }}
           >

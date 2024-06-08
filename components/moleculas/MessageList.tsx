@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Message from "./Message";
+import Message from "../organisms/Message";
 import { MessageType } from "@/lib/validations/MessageValidation";
 
 interface Props {

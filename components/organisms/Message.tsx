@@ -59,7 +59,7 @@ const Message = ({ text, senderId, seen }: Props) => {
           className={`relative mx-3 py-2 px-4 shadow rounded-xl ${messageBg}`}
         >
           <ReactMarkdown
-            className="text-base lg:text-lg"
+            className="text-base lg:text-lg flex flex-col gap-3 py-3"
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeHighlight]}
             components={{

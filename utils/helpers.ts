@@ -14,4 +14,32 @@ const isProtectedRoute = (currentPath: string): boolean =>
 const isUnprotectedRoute = (currentPath: string): boolean =>
   isPathOnArray(currentPath, UNPROTECTED_ROUTES) || isIndexRoute(currentPath);
 
-export { isProtectedRoute, isUnprotectedRoute };
+const extractCodeBlock = (input: string): [string, string] => {
+  const codeBlockRegex = /```([\s\S]*?)```/g;
+  let match;
+  let codeBlockContent = "";
+  let textWithoutCodeBlock = input;
+
+  // Extract content inside "```" blocks
+  while ((match = codeBlockRegex.exec(input)) !== null) {
+    codeBlockContent += match[1].trim() + "\n";
+  }
+  codeBlockContent = codeBlockContent.trim();
+
+  // Remove "```" blocks from the input string
+  textWithoutCodeBlock = textWithoutCodeBlock
+    .replace(codeBlockRegex, "")
+    .trim();
+
+  return [textWithoutCodeBlock, codeBlockContent];
+};
+
+const getGuardianDisplayMessage = (message: string) => {
+  const [cleanText, codeContent] = extractCodeBlock(message);
+  console.log({ codeContent });
+  const grammarAnswer = `${codeContent} \n ${cleanText}`;
+
+  return grammarAnswer;
+};
+
+export { isProtectedRoute, isUnprotectedRoute, getGuardianDisplayMessage };

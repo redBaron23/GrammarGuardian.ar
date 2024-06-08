@@ -3,22 +3,15 @@
 import { useState } from "react";
 import ClipboardIcon from "@/public/assets/clipboard.svg";
 import CheckIcon from "@/public/assets/check.svg";
-import {
-  dark,
-  prism,
-  dracula,
-  base16AteliersulphurpoolLight,
-  materialLight,
-  solarizedlight,
-  ghcolors,
-  oneLight,
-} from "react-syntax-highlighter/dist/esm/styles/prism";
-import { Prism, SyntaxHighlighterProps } from "react-syntax-highlighter";
-const SyntaxHighlighter = Prism as any as React.FC<SyntaxHighlighterProps>;
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
 
 const CodeBlock = ({ className, children }: any) => {
   const [copied, setCopied] = useState(false);
   const language = className ? className.replace("language-", "") : "text";
+
+  console.log(children);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(String(children));
@@ -29,20 +22,9 @@ const CodeBlock = ({ className, children }: any) => {
   };
 
   return (
-    <div className="relative">
-      <SyntaxHighlighter
-        language={language}
-        style={solarizedlight}
-        customStyle={{ paddingTop: "2.5em" }}
-        lineProps={{
-          style: { wordBreak: "break-all", whiteSpace: "pre-wrap" },
-        }}
-        wrapLines
-      >
-        {children}
-      </SyntaxHighlighter>
+    <div className="flex flex-col p-4 bg-yellow-100 gap-2">
       <button
-        className="absolute top-2 right-4 flex items-center p-1 rounded-md bg-gray-200 text-gray-600 hover:bg-gray-300 focus:outline-none"
+        className="self-end flex items-center p-1 rounded-md bg-gray-200 text-gray-600 hover:bg-gray-300 focus:outline-none"
         onClick={handleCopy}
       >
         {copied ? (
@@ -57,6 +39,13 @@ const CodeBlock = ({ className, children }: any) => {
           </>
         )}
       </button>
+      <ReactMarkdown
+        className="text-base lg:text-lg"
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeHighlight]}
+      >
+        {children}
+      </ReactMarkdown>
     </div>
   );
 };

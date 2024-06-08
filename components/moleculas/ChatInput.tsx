@@ -5,6 +5,8 @@ import AttachmentInput from "../atoms/AttachmentInput";
 import SendButton from "../atoms/SendButton";
 import { addMessage } from "@/app/actions/chatActions";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import pages from "@/constants/pages";
 
 const initialState = {
   error: null,
@@ -17,6 +19,7 @@ interface Props {
 
 const ChatInput = ({ chatId }: Props) => {
   const [text, setText] = useState("");
+  const router = useRouter();
 
   const addMessageWithId = addMessage.bind(null, {
     chatId,
@@ -27,6 +30,10 @@ const ChatInput = ({ chatId }: Props) => {
       const { error, chat } = await addMessageWithId(formData);
       if (error) {
         return { error, text: prevState.text };
+      }
+
+      if (!chatId) {
+        router.push(`${pages.chat}/${chat!.id}`);
       }
 
       return { error, text: chat?.id };

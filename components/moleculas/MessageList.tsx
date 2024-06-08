@@ -5,7 +5,7 @@ import Message from "./Message";
 import { MessageType } from "@/lib/validations/MessageValidation";
 
 interface Props {
-  messages: MessageType[];
+  messages?: MessageType[];
 }
 
 const MessageList = ({ messages }: Props) => {

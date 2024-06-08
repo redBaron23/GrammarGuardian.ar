@@ -2,10 +2,15 @@
 
 import { DEFAULT_ERROR_MESSAGE } from "@/constants/global";
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
 import { revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { askGuardian } from "@/lib/guardian";
+import {
+  deleteChat,
+  updateChatWithMessage,
+  upsertChatMessage,
+} from "@/lib/prisma/chat";
+import pages from "@/constants/pages";
 
 interface MessagesInput {
   chatId?: string;
@@ -14,18 +19,7 @@ interface MessagesInput {
 const addGuardianMessage = async (message: string, chatId: string) => {
   try {
     const guardianMessage = await askGuardian(message);
-
-    await prisma.chat.update({
-      where: { id: chatId },
-      data: {
-        messages: {
-          create: {
-            text: guardianMessage,
-            senderId: "0",
-          },
-        },
-      },
-    });
+    await updateChatWithMessage(chatId, guardianMessage, "0");
 
     revalidateTag("/messages");
   } catch (e) {
@@ -39,48 +33,16 @@ export const addMessage = async (
 ) => {
   const session = await auth();
   const userId = session?.user?.id;
-
   const text = formData.get("text") as string;
 
   if (!text || !userId) {
     return { error: "A text is required" };
   }
 
-  if (!chatId) {
-    const chat = await prisma.chat.create({
-      data: {
-        userId,
-        messages: {
-          create: {
-            text,
-            senderId: userId,
-          },
-        },
-      },
-      include: {
-        messages: true,
-      },
-    });
-
-    redirect(`/chat/${chat.id}`);
-  }
-
   try {
-    const chat = await prisma.chat.update({
-      where: { id: chatId },
-      data: {
-        messages: {
-          create: {
-            text,
-            senderId: userId,
-          },
-        },
-      },
-    });
-
-    revalidateTag("/messages");
-
-    await addGuardianMessage(text, chatId);
+    const chat = await upsertChatMessage(chatId, text, userId);
+    const currentChatId = chatId ?? chat.id;
+    await addGuardianMessage(text, currentChatId);
 
     return { error: null, chat };
   } catch (e) {
@@ -93,18 +55,12 @@ export const removeChat = async ({ chatId }: MessagesInput) => {
   const session = await auth();
   const userId = session?.user.id;
 
-  if (!userId) {
+  if (!userId || !chatId) {
     return;
   }
 
   try {
-    await prisma.chat.delete({
-      where: {
-        userId,
-        id: chatId,
-      },
-    });
-
+    await deleteChat(chatId, userId);
     revalidateTag("/chats");
   } catch (e) {
     console.log(`Error deleting ${chatId} from user ${userId}: ${e}`);

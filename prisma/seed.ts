@@ -1,4 +1,3 @@
-import { GRAMMAR_GUARDIAN_ID } from "@/constants";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
@@ -8,7 +7,7 @@ async function main() {
     where: { email: "bot@example.com" },
     update: {},
     create: {
-      id: GRAMMAR_GUARDIAN_ID,
+      id: "0",
       email: "bot@grammarguardian.ar",
       name: "Grammar Guardian.ar",
       isGuardian: true,

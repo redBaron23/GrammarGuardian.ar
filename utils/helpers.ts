@@ -1,4 +1,4 @@
-import { PROTECTED_ROUTES, UNPROTECTED_ROUTES } from "@/constants/global";
+import { PROTECTED_ROUTES, UNPROTECTED_ROUTES } from "@/constants";
 import pages from "@/constants/pages";
 
 const isPathOnArray = (currentPath: string, array: string[]): boolean => {

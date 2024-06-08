@@ -1,7 +1,15 @@
+import { MessageType } from "@/lib/validations/MessageValidation";
 import pages from "./pages";
+
+const WELCOME_PLACEHOLDER = `
+**Welcome to GrammarGuardian!**
+
+Type any sentence or paragraph, and I'll help you make it better. Let's improve your writing together!
+`;
 
 export const USER_ID = "cloue3fy80002jycwh3o6g47c";
 export const CHAT_ID = "cloumogov0000jynuxit11y2x";
+export const GRAMMAR_GUARDIAN_ID = "0";
 
 export const DEFAULT_ERROR_MESSAGE = "Something went wrong";
 export const PROTECTED_ROUTES = [pages.chat, pages.profile, pages.settings];
@@ -40,3 +48,12 @@ Remember to:
 
 By following these guidelines, you will assist users in
 `;
+
+export const PLACEHOLDER_MESSAGE: MessageType = {
+  id: "message-0",
+  senderId: GRAMMAR_GUARDIAN_ID,
+  createdAt: new Date(),
+  text: WELCOME_PLACEHOLDER,
+};
+
+export const INPUT_PLACEHOLDER = "Type here...";

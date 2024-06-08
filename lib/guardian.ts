@@ -1,4 +1,4 @@
-import { PROMPT, CHATGPT_VERSION } from "@/constants/global";
+import { PROMPT, CHATGPT_VERSION } from "@/constants";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import OpenAI from "openai";
 

@@ -1,9 +1,10 @@
+import { PLACEHOLDER_MESSAGE } from "@/constants";
 import { auth } from "./auth";
 import { prisma } from "./prisma";
 
 export const getMessages = async (chatId?: string) => {
   if (!chatId) {
-    return [];
+    return [PLACEHOLDER_MESSAGE];
   }
 
   try {

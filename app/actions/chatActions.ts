@@ -1,16 +1,14 @@
 "use server";
 
-import { DEFAULT_ERROR_MESSAGE } from "@/constants/global";
+import { DEFAULT_ERROR_MESSAGE, GRAMMAR_GUARDIAN_ID } from "@/constants";
 import { auth } from "@/lib/auth";
 import { revalidateTag } from "next/cache";
-import { redirect } from "next/navigation";
 import { askGuardian } from "@/lib/guardian";
 import {
   deleteChat,
   updateChatWithMessage,
   upsertChatMessage,
 } from "@/lib/prisma/chat";
-import pages from "@/constants/pages";
 
 interface MessagesInput {
   chatId?: string;
@@ -19,7 +17,7 @@ interface MessagesInput {
 const addGuardianMessage = async (message: string, chatId: string) => {
   try {
     const guardianMessage = await askGuardian(message);
-    await updateChatWithMessage(chatId, guardianMessage, "0");
+    await updateChatWithMessage(chatId, guardianMessage, GRAMMAR_GUARDIAN_ID);
 
     revalidateTag("/messages");
   } catch (e) {

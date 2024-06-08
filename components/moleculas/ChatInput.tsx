@@ -7,6 +7,7 @@ import { addMessage } from "@/app/actions/chatActions";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import pages from "@/constants/pages";
+import { INPUT_PLACEHOLDER } from "@/constants";
 
 const initialState = {
   error: null,
@@ -92,7 +93,7 @@ const ChatInput = ({ chatId }: Props) => {
               className={`flex w-full rounded-xl focus:outline-none px-4 py-2 resize-none ${
                 isMultiline ? "overflow-y-auto" : "overflow-hidden"
               }`}
-              placeholder="Enter a sentence or paragraph that you would like to improve..."
+              placeholder={INPUT_PLACEHOLDER}
             />
           </div>
         </div>

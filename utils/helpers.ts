@@ -14,13 +14,4 @@ const isProtectedRoute = (currentPath: string): boolean =>
 const isUnprotectedRoute = (currentPath: string): boolean =>
   isPathOnArray(currentPath, UNPROTECTED_ROUTES) || isIndexRoute(currentPath);
 
-const parseGuardianMessage = (message: string): [string, string] => {
-  const parts = message.split("{{");
-  const originalText = parts[0].trim();
-  const improvedText =
-    parts.length > 1 ? parts[1].replace("}}", "").trim() : "";
-
-  return [originalText, improvedText];
-};
-
-export { isProtectedRoute, isUnprotectedRoute, parseGuardianMessage };
+export { isProtectedRoute, isUnprotectedRoute };

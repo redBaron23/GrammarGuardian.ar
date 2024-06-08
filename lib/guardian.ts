@@ -1,4 +1,4 @@
-import { PROMPTS } from "@/constants/global";
+import { PROMPT, CHATGPT_VERSION } from "@/constants/global";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import OpenAI from "openai";
 
@@ -29,11 +29,9 @@ async function askGemini(prompt: string): Promise<string> {
 }
 
 const askOpenAi = async (userSentence: string) => {
-  // const modelId = "gpt-4o";
-  const modelId = "gpt-3.5-turbo-1106";
+  const modelId = CHATGPT_VERSION;
 
-  // Define the system message
-  const systemMessage = PROMPTS.ASSISTANT;
+  const systemMessage = PROMPT;
 
   try {
     const openai = new OpenAI({

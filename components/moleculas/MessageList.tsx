@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Message from "../atoms/Message";
+import Message from "./Message";
 import { MessageType } from "@/lib/validations/MessageValidation";
 
 interface Props {

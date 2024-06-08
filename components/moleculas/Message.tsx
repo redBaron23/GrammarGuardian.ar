@@ -12,13 +12,13 @@ type Props = {
   seen?: boolean;
 } & MessageType;
 
-const Message: React.FC<Props> = ({ text, senderId, seen }) => {
+const Message = ({ text, senderId, seen }: Props) => {
   const { data } = useSession();
   const isSelfMessage = senderId === data?.user.id;
 
   const mainContainerStyles = isSelfMessage
-    ? "col-start-6 col-end-13 p-3 pe-2 rounded-lg"
-    : "col-start-1 col-end-8 p-3 rounded-lg";
+    ? "col-start-3 col-end-13 p-3 pe-2 rounded-lg"
+    : "col-start-1 col-end-11 p-3 rounded-lg";
   const containerStyles = isSelfMessage
     ? "flex items-center justify-start flex-row-reverse"
     : "flex flex-row items-center";

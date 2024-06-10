@@ -57,9 +57,9 @@ const Sidebar = ({ children, chats }: Props) => {
           </div>
 
           <div className="w-full border-gray-600 border-b p-6" />
-          <div className="flex flex-col px-6 border-gray-600 w-full overflow-y-scroll mb-5 scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-700">
+          <div className="flex flex-col text-white px-6 border-gray-600 w-full overflow-y-scroll mb-5 scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-700">
             <div className="flex py-5">
-              <p className="text-base leading-6 uppercase">Lessons</p>
+              <p className="text-base leading-6">Today</p>
             </div>
             <ChatList chats={chats} onClickLink={handleCloseSidebar} />
           </div>

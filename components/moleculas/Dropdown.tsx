@@ -33,16 +33,8 @@ const Dropdown = () => {
       {open && (
         <div className="absolute w-60 px-5 py-3 dark:bg-gray-800 bg-white rounded-lg shadow border dark:border-transparent -mt-48">
           <ul className="space-y-3 dark:text-white">
-            <DropdownOption
-              label="Account"
-              onClick={signOut}
-              Icon={AccountIcon}
-            />
-            <DropdownOption
-              label="Settings"
-              onClick={signOut}
-              Icon={SettingsIcon}
-            />
+            <DropdownOption label="Account" Icon={AccountIcon} />
+            <DropdownOption label="Settings" Icon={SettingsIcon} />
             <hr className="dark:border-gray-700" />
             <DropdownOption
               label="Sign out"

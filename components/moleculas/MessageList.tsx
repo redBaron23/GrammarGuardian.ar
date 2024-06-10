@@ -23,7 +23,7 @@ const MessageList = ({ messages }: Props) => {
       className="flex flex-col h-full overflow-y-auto mb-4 scrollbar-thin pt-12 lg:pt-0"
     >
       <div className="flex flex-col h-full">
-        <div className="grid grid-cols-12 gap-y-2">
+        <div className="grid grid-cols-12 gap-y-5">
           {messages &&
             messages.map((message, index) => (
               <Message {...message} key={`${message.id}/${index}`} />

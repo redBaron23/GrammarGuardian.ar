@@ -12,13 +12,15 @@ type Props = {
   seen?: boolean;
 } & MessageType;
 
+const commonStyles = "md:px-3 rounded-lg";
+
 const Message = ({ text, senderId, seen }: Props) => {
   const { data } = useSession();
   const isSelfMessage = senderId === data?.user.id;
 
   const mainContainerStyles = isSelfMessage
-    ? "col-start-3 col-end-13 p-3 pe-2 rounded-lg"
-    : "col-start-1 col-end-11 p-3 rounded-lg";
+    ? `col-start-3 col-end-13 pe-2 ${commonStyles}`
+    : `col-start-1 col-end-13 md:col-end-11 ${commonStyles}`;
   const containerStyles = isSelfMessage
     ? "flex items-center justify-start flex-row-reverse"
     : "flex flex-row items-center";

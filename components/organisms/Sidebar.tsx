@@ -32,13 +32,13 @@ const Sidebar = ({ children, chats }: Props) => {
   return (
     <div className="flex flex-row overflow-y-hidden h-screen w-screen bg-gray-700">
       <div
-        className={`${sidebarClassName} flex-col justify-between transition-all duration-300 ease-in-out lg:flex lg:w-auto xl:rounded-r lg:p-6 `}
+        className={`${sidebarClassName} flex-col transition-all duration-300 ease-in-out lg:flex lg:w-auto xl:rounded-r lg:p-6 `}
       >
         <CloseButton
           className="lg:hidden flex justify-end pe-6 pt-6"
           onClick={handleCloseSidebar}
         />
-        <div>
+        <div className="flex flex-col">
           <div className="flex justify-center items-center w-full p-6">
             <div className="flex flex-col items-center gap-4">
               <Image
@@ -57,20 +57,21 @@ const Sidebar = ({ children, chats }: Props) => {
           </div>
 
           <div className="w-full border-gray-600 border-b p-6" />
-          <div className="flex flex-col text-white px-6 border-gray-600 w-full overflow-y-scroll mb-5 scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-700">
-            <div className="flex py-5">
-              <p className="text-base leading-6">Today</p>
-            </div>
+        </div>
+        <div className="px-6 flex py-5">
+          <p className="text-base leading-6">Today</p>
+        </div>
+        <div className="h-full justify-between flex flex-col text-white px-6 border-gray-600 w-full overflow-y-auto">
+          <div className="overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-700">
             <ChatList chats={chats} onClickLink={handleCloseSidebar} />
           </div>
-        </div>
-
-        <div
-          className={`${
-            chats.length ? "" : "h-full"
-          } flex flex-col justify-end items-center pb-8 px-6 w-full space-y-32`}
-        >
-          <UserProfileCard user={data?.user} />
+          <div
+            className={`flex flex-col justify-end items-center py-4 w-full ${
+              chats.length ? "" : "h-full"
+            }`}
+          >
+            <UserProfileCard user={data?.user} />
+          </div>
         </div>
       </div>
       <div className={`${contentClassName} relative`}>

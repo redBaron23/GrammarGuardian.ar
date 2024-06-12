@@ -1,6 +1,27 @@
 import { PROTECTED_ROUTES, UNPROTECTED_ROUTES } from "@/constants";
 import pages from "@/constants/pages";
 
+const detectLanguage = async (text: string) => {
+  try {
+    const detection = await fetch(
+      `https://api.api-ninjas.com/v1/textlanguage?text=${text}`,
+      {
+        method: "GET",
+        headers: new Headers({
+          "X-Api-Key": process.env.NINJA_API_KEY as string,
+          "content-type": "application/json",
+        }),
+      }
+    );
+    const { language } = await detection.json();
+
+    return language;
+  } catch (error) {
+    console.error("Error detecting language:", error);
+    return null;
+  }
+};
+
 const isPathOnArray = (currentPath: string, array: string[]): boolean => {
   return array.some((route) => currentPath.startsWith(route));
 };
@@ -53,4 +74,5 @@ export {
   isUnprotectedRoute,
   getGuardianDisplayMessage,
   getMessageToCopy,
+  detectLanguage,
 };

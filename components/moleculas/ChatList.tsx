@@ -15,8 +15,8 @@ const ChatList = ({ chats, onClickLink }: Props) => {
     >
       <Link href={`/chat/${chat.id}`} onClick={onClickLink}>
         <div>
-          <p className="text-lg leading-5">Lesson {index}: Introduction</p>
-          <p className="text-sm text-gray-500">{chat.id}</p>
+          <p className="text-lg leading-5">Chat #{index}</p>
+          <p className="text-sm text-gray-500">{chat.language}</p>
         </div>
       </Link>
       <ChatRemover chatId={chat.id} />

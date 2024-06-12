@@ -1,6 +1,9 @@
+import { detectLanguage } from "@/utils/helpers";
 import { prisma } from ".";
 
 export const createChat = async (userId: string, text: string) => {
+  const language = await detectLanguage(text);
+
   return prisma.chat.create({
     data: {
       userId,
@@ -10,6 +13,7 @@ export const createChat = async (userId: string, text: string) => {
           senderId: userId,
         },
       },
+      language,
     },
     include: {
       messages: true,

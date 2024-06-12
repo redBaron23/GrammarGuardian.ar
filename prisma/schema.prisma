@@ -67,6 +67,7 @@ model Chat {
   user      User      @relation(fields: [userId], references: [id])
   userId    String
   messages  Message[]
+  language  String?
 }
 
 model Message {

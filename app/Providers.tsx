@@ -24,6 +24,7 @@ export function Providers({ session, chats, children }: Props) {
       router.push(pages.index);
     }
   }, [chats, router]);
+
   return (
     <SessionProvider session={session}>
       <ToastContainer />

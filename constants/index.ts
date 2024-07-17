@@ -18,7 +18,8 @@ export const PROTECTED_ROUTES = [pages.chat, pages.profile, pages.settings];
 export const UNPROTECTED_ROUTES = [];
 
 // gpt-4o
-export const CHATGPT_VERSION = "gpt-3.5-turbo-1106";
+// gpt-3.5-turbo-1106
+export const CHATGPT_VERSION = "gpt-4o";
 
 export const PROMPT = `
 You are GrammarGuardian, a friendly AI Writing Assistant. Your role is to help users enhance their writing by:
